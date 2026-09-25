@@ -272,6 +272,11 @@ h2.sec small{display:block;font-size:15px;color:var(--faint);font-weight:700}
 .tl{list-style:none;display:grid;gap:18px}
 .tl li{border-right:4px solid var(--gold);padding-right:14px}
 .tl b{display:block;color:var(--ink);font-size:16px}.tl em{font-style:normal;font-size:12.5px;font-weight:800;color:var(--faint)}
+.hl{padding:10px 0 30px}
+.hls{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:20px;margin-top:18px}
+.hls div{background:var(--paper);border:var(--line);border-radius:20px;box-shadow:var(--pop-sm);padding:16px 18px}
+.hls i{font-style:normal;font-size:30px;display:block}.hls b{display:block;font-size:17px;margin:4px 0}
+.hls p{font-size:14px;color:var(--dim)}
 .skills{display:flex;flex-wrap:wrap;gap:7px}
 .skills span{font-size:13px;font-weight:700;border:2px solid var(--ink);border-radius:100px;padding:1px 12px;direction:ltr}
 </style>
@@ -303,6 +308,8 @@ h2.sec small{display:block;font-size:15px;color:var(--faint);font-weight:700}
   <div class="stat"><b id="sL">{{LIVE}}</b><span>بلقطات حقيقية</span></div>
   <div class="stat"><b id="sC">{{CATS}}</b><span>مجالات</span></div>
 </div></header>
+
+<section class="hl"><div class="wrap"><h2 class="sec">شنو أقدّم</h2><div class="hls" id="hls"></div></div></section>
 
 <main class="wrap" id="work">
  <h2 class="sec">مشاريعي <small>كل مشروع مشغّل ومصوّر تلقائياً</small></h2>
@@ -366,6 +373,8 @@ function draw(){
  if(ME.email)$('#mail').href='mailto:'+ME.email;else $('#mail').remove();
  $('#exp').innerHTML=(ME.experience||[]).map(x=>`<li><b>${esc(x.title)}</b><em>${esc(x.years)}</em><p>${esc(x.text)}</p></li>`).join('');
  $('#train').innerHTML=(ME.training||[]).map(x=>`<li>${esc(x)}</li>`).join('');
+ $('#hls').innerHTML=(ME.highlights||[]).map(x=>`<div><i>${esc(x.icon)}</i><b>${esc(x.title)}</b><p>${esc(x.text)}</p></div>`).join('');
+ if(!(ME.highlights||[]).length)$('.hl').remove();
  $('#skills').innerHTML=(ME.skills||[]).map(x=>`<span>${esc(x)}</span>`).join('');
  const st=$('#stats');(ME.stats||[]).forEach(([v,l])=>{st.insertAdjacentHTML('beforeend',`<div class="stat"><b>${esc(v)}</b><span>${esc(l)}</span></div>`)});
  if(ME.name)document.title=ME.name+(ME.role?' — '+ME.role:'');})();
@@ -381,6 +390,8 @@ document.querySelectorAll('.chip').forEach(c=>c.onclick=()=>{(function(){const t
  if(ME.email)$('#mail').href='mailto:'+ME.email;else $('#mail').remove();
  $('#exp').innerHTML=(ME.experience||[]).map(x=>`<li><b>${esc(x.title)}</b><em>${esc(x.years)}</em><p>${esc(x.text)}</p></li>`).join('');
  $('#train').innerHTML=(ME.training||[]).map(x=>`<li>${esc(x)}</li>`).join('');
+ $('#hls').innerHTML=(ME.highlights||[]).map(x=>`<div><i>${esc(x.icon)}</i><b>${esc(x.title)}</b><p>${esc(x.text)}</p></div>`).join('');
+ if(!(ME.highlights||[]).length)$('.hl').remove();
  $('#skills').innerHTML=(ME.skills||[]).map(x=>`<span>${esc(x)}</span>`).join('');
  const st=$('#stats');(ME.stats||[]).forEach(([v,l])=>{st.insertAdjacentHTML('beforeend',`<div class="stat"><b>${esc(v)}</b><span>${esc(l)}</span></div>`)});
  if(ME.name)document.title=ME.name+(ME.role?' — '+ME.role:'');})();

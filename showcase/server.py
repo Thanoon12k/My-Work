@@ -365,6 +365,11 @@ def api_profile():
             for l in lines('experience'):
                 parts = [x.strip() for x in l.split('|')] + ['', '']
                 o['experience'].append({'title': parts[0], 'years': parts[1], 'text': parts[2]})
+        if 'highlights' in f:
+            o['highlights'] = []
+            for l in lines('highlights'):
+                parts = [x.strip() for x in l.split('|')] + ['', '']
+                o['highlights'].append({'icon': parts[0], 'title': parts[1], 'text': parts[2]})
         if 'stats' in f:
             o['stats'] = [[x.strip() for x in (l.split('|') + [''])[:2]] for l in lines('stats')]
         ph = request.files.get('photo')
@@ -478,7 +483,8 @@ ADMIN_HTML = '''<!doctype html><html lang="ar" dir="rtl"><head>%s<title>إدار
  <div class="row"><div><label>الإيميل</label><input id="me_email" dir="ltr"></div><div><label>اللغات</label><input id="me_languages"></div></div>
  <label>الدراسة</label><input id="me_education">
  <label>الخبرة — كل سطر: العنوان | السنوات | الوصف</label><textarea id="me_experience" style="min-height:130px"></textarea>
- <label>دورات وتدريب — كل سطر وحدة</label><textarea id="me_training"></textarea>
+ <label>شنو أقدّم — كل سطر: أيقونة | العنوان | الوصف</label><textarea id="me_highlights" style="min-height:130px"></textarea>
+ <label>دورات وتدريب وبحوث — كل سطر وحدة</label><textarea id="me_training"></textarea>
  <label>المهارات — افصل بفاصلة</label><textarea id="me_skills" dir="ltr"></textarea>
  <label>أرقام إضافية — كل سطر: الرقم | الوصف</label><textarea id="me_stats"></textarea>
  <p style="margin-top:14px"><button class="btn" id="meBtn">حفظ معلوماتي</button></p><div class="msg" id="memsg"></div></div>
@@ -535,11 +541,12 @@ const MEF=['name','name_en','role','location','bio','email','languages','educati
 async function loadMe(){const m=await (await fetch('/admin/api/profile')).json();
  MEF.forEach(k=>$('#me_'+k).value=m[k]||'');$('#me_ph').src='/'+(m.photo||'favicon.svg');
  $('#me_experience').value=(m.experience||[]).map(x=>[x.title,x.years,x.text].join(' | ')).join('\n');
- $('#me_training').value=(m.training||[]).join('\n');$('#me_skills').value=(m.skills||[]).join(', ');
+ $('#me_training').value=(m.training||[]).join('\n');
+ $('#me_highlights').value=(m.highlights||[]).map(x=>[x.icon,x.title,x.text].join(' | ')).join('\n');$('#me_skills').value=(m.skills||[]).join(', ');
  $('#me_stats').value=(m.stats||[]).map(x=>x.join(' | ')).join('\n')}
 $('#me_photo').onchange=e=>{const f=e.target.files[0];if(f)$('#me_ph').src=URL.createObjectURL(f)};
 $('#meBtn').onclick=async()=>{const fd=new FormData();MEF.forEach(k=>fd.append(k,$('#me_'+k).value));
- ['experience','training','skills','stats'].forEach(k=>fd.append(k,$('#me_'+k).value));
+ ['experience','training','skills','stats','highlights'].forEach(k=>fd.append(k,$('#me_'+k).value));
  const f=$('#me_photo').files[0];if(f)fd.append('photo',f,f.name);
  const j=await post('/admin/api/profile',fd);msg($('#memsg'),j.error||'انحفظ ✓',!j.error);if(!j.error){$('#me_photo').value='';loadMe()}};
 load();loadMe();
