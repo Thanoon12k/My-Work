@@ -86,7 +86,7 @@ def shoot_one(cfg, browser, slug, path, url, over):
     t0 = time.time()
     p = detect.detect(path, slug)
     p.update({k: v for k, v in over.items() if not k.startswith('_')})
-    p['repo'] = url
+    p['repo'] = '' if over.get('private') else url
     p['updated'] = last_commit(path)
     outdir = os.path.join(cfg['_out'], 'shots', slug)
     shutil.rmtree(outdir, ignore_errors=True)
@@ -102,7 +102,19 @@ def shoot_one(cfg, browser, slug, path, url, over):
     if not shots and p['primary'] in ('django', 'flask', 'fastapi'):
         shots += capture.render_templates(p, path, outdir, browser)
         print('    templates: %d' % len(shots))
-    repo_imgs = assets.collect(p, path, outdir, remote=cfg.get('download_readme_images', True))
+    repo_imgs = []
+    for i, rel in enumerate(over.get('images', [])):      # hand-picked pictures from config
+        src = os.path.join(path, rel)
+        if os.path.isfile(src):
+            from PIL import Image
+            name = 'pick%02d.png' % (i + 1)
+            im = Image.open(src).convert('RGB')
+            im.save(os.path.join(outdir, name))
+            repo_imgs.append({'file': name, 'kind': 'repo', 'caption': os.path.basename(rel),
+                              'device': 'desktop'})
+    if not repo_imgs:
+        repo_imgs = assets.collect(p, path, outdir,
+                                   remote=cfg.get('download_readme_images', True))
     if repo_imgs:
         print('    repo images: %d' % len(repo_imgs))
     shots += repo_imgs

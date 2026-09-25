@@ -503,7 +503,7 @@ async function post(url, fd){fd.append('csrf',CSRF);const r=await fetch(url,{met
 function msg(el,t,ok){el.textContent=t;el.className='msg '+(ok?'ok':'bad')}
 async function load(keep){P=await (await fetch('/admin/api/projects')).json();
  const s=$('#slug');s.innerHTML='<option value="__new__">➕ مشروع جديد</option>'+P.map(p=>`<option value="${p.slug}">${p.title.replace(/</g,'&lt;')}${p.hidden?' (مخفي)':''}</option>`).join('');
- s.value=keep||'__new__';fill()}
+ s.value=keep||(P[0]&&P[0].slug)||'__new__';fill()}
 function fill(){const p=P.find(x=>x.slug===$('#slug').value);
  F.forEach(k=>$('#'+k).value=p?(Array.isArray(p[k])?p[k].join(', '):(p[k]??'')):(k==='cat'?'web':''));
  $('#hidden').checked=!!(p&&p.hidden);
@@ -540,10 +540,10 @@ $('#pwBtn').onclick=async()=>{const fd=new FormData();fd.append('old',$('#pw_old
 const MEF=['name','name_en','role','location','bio','email','languages','education'];
 async function loadMe(){const m=await (await fetch('/admin/api/profile')).json();
  MEF.forEach(k=>$('#me_'+k).value=m[k]||'');$('#me_ph').src='/'+(m.photo||'favicon.svg');
- $('#me_experience').value=(m.experience||[]).map(x=>[x.title,x.years,x.text].join(' | ')).join('\n');
- $('#me_training').value=(m.training||[]).join('\n');
- $('#me_highlights').value=(m.highlights||[]).map(x=>[x.icon,x.title,x.text].join(' | ')).join('\n');$('#me_skills').value=(m.skills||[]).join(', ');
- $('#me_stats').value=(m.stats||[]).map(x=>x.join(' | ')).join('\n')}
+ $('#me_experience').value=(m.experience||[]).map(x=>[x.title,x.years,x.text].join(' | ')).join('\\n');
+ $('#me_training').value=(m.training||[]).join('\\n');
+ $('#me_highlights').value=(m.highlights||[]).map(x=>[x.icon,x.title,x.text].join(' | ')).join('\\n');$('#me_skills').value=(m.skills||[]).join(', ');
+ $('#me_stats').value=(m.stats||[]).map(x=>x.join(' | ')).join('\\n')}
 $('#me_photo').onchange=e=>{const f=e.target.files[0];if(f)$('#me_ph').src=URL.createObjectURL(f)};
 $('#meBtn').onclick=async()=>{const fd=new FormData();MEF.forEach(k=>fd.append(k,$('#me_'+k).value));
  ['experience','training','skills','stats','highlights'].forEach(k=>fd.append(k,$('#me_'+k).value));

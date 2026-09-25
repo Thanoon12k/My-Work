@@ -81,7 +81,8 @@ def collect(project, root, outdir, max_images=6, remote=True):
     for d, dirs, files in os.walk(root):
         dirs[:] = [x for x in dirs if x not in SKIP_DIRS and not x.startswith('.')
                    and x not in ('android', 'ios', 'windows', 'macos', 'linux', 'static',
-                                 'public', 'node_modules', 'res', 'mipmap')]
+                                 'public', 'node_modules', 'res', 'mipmap')
+                   and not os.path.exists(os.path.join(d, x, '.git'))]
         for fn in files:
             if fn.lower().endswith(IMG_EXT) and not BAD_NAME.search(fn):
                 p = os.path.join(d, fn)
@@ -94,7 +95,8 @@ def collect(project, root, outdir, max_images=6, remote=True):
     # 3. plots saved inside notebooks
     if 'notebook' in project['kinds'] and len(shots) < max_images:
         for d, dirs, files in os.walk(root):
-            dirs[:] = [x for x in dirs if x not in SKIP_DIRS and not x.startswith('.')]
+            dirs[:] = [x for x in dirs if x not in SKIP_DIRS and not x.startswith('.')
+                       and not os.path.exists(os.path.join(d, x, '.git'))]
             for fn in files:
                 if not fn.endswith('.ipynb'):
                     continue

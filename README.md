@@ -5,8 +5,8 @@
 <img src="docs/banner-light.png" width="100%" alt="Thanoon Younis Mohammed"></picture></a>
 
 <a href="https://make1it.pythonanywhere.com"><img src="https://img.shields.io/badge/Live_site-make1it.pythonanywhere.com-FFC93C?style=for-the-badge&labelColor=16130D" alt="Live site"></a>
-<br><img src="https://img.shields.io/badge/projects-63-12B99C?style=flat-square" alt="">
- <img src="https://img.shields.io/badge/real_screenshots-30-4361EE?style=flat-square" alt="">
+<br><img src="https://img.shields.io/badge/projects-64-12B99C?style=flat-square" alt="">
+ <img src="https://img.shields.io/badge/real_screenshots-31-4361EE?style=flat-square" alt="">
  <img src="https://img.shields.io/badge/categories-8-FF5C39?style=flat-square" alt="">
  <a href="https://wa.me/9647702790915"><img src="https://img.shields.io/badge/WhatsApp-contact-25D366?style=flat-square&logo=whatsapp&logoColor=white" alt="WhatsApp"></a>
  <a href="mailto:engthanoon1@gmail.com"><img src="https://img.shields.io/badge/Email-engthanoon1%40gmail.com-EA4335?style=flat-square&logo=gmail&logoColor=white" alt="Email"></a>
@@ -51,21 +51,21 @@
 
 
 <p align="center">
+<a href="#" title="صفحة الكود الذهبي — تدير نفسها"><img src="docs/projects/facebook-automation.webp" width="49%" alt="Golden Code — Self-running Facebook page"></a>
 <a href="https://github.com/Thanoon12k/moalidaty-front-end" title="مولدتي"><img src="docs/projects/moalidaty-front-end.webp" width="49%" alt="Moalidaty Front End"></a>
 <a href="https://github.com/Thanoon12k/moalidaty" title="مولدتي — السيرفر ولوحة الإدارة"><img src="docs/projects/moalidaty.webp" width="49%" alt="Moalidaty"></a>
 <a href="https://github.com/Thanoon12k/BubbleSheetScanner" title="ببل شيت سكنر"><img src="docs/projects/BubbleSheetScanner.webp" width="49%" alt="Bubble Sheet Scanner"></a>
 <a href="https://github.com/Thanoon12k/Employee-Manager" title="إدارة موظفين الدائرة"><img src="docs/projects/Employee-Manager.webp" width="49%" alt="Employee Manager App"></a>
 <a href="https://github.com/Thanoon12k/Pediatric-Clinic-manager" title="عيادتي — إدارة عيادة أطفال"><img src="docs/projects/Pediatric-Clinic-manager.webp" width="49%" alt="عيادتي – Pediatric Clinic Manager"></a>
-<a href="https://github.com/Thanoon12k/flutter-arduino-based-syringe-pump" title="مضخة الحقنة الطبية الذكية"><img src="docs/projects/flutter-arduino-based-syringe-pump.webp" width="49%" alt="مضخة الحقنة الطبية الذكية | Smart Medical Syringe Pump"></a>
 </p>
 
 
+- 🤖 **[صفحة الكود الذهبي — تدير نفسها](https://make1it.pythonanywhere.com)** <sub>Golden Code — Self-running Facebook page</sub> — `Python` · `Graph API` · `MCP` · `AI Agent`
 - 📱 **[مولدتي](https://github.com/Thanoon12k/moalidaty-front-end)** <sub>Moalidaty Front End</sub> — `Flutter`
 - 🌐 **[مولدتي — السيرفر ولوحة الإدارة](https://github.com/Thanoon12k/moalidaty)** <sub>Moalidaty</sub> — `Django` · `DRF`
 - 🖥️ **[ببل شيت سكنر](https://github.com/Thanoon12k/BubbleSheetScanner)** <sub>Bubble Sheet Scanner</sub> — `OpenCV` · `pandas` · `Python desktop` · `Tkinter`
 - 📱 **[إدارة موظفين الدائرة](https://github.com/Thanoon12k/Employee-Manager)** <sub>Employee Manager App</sub> — `Flutter`
 - 📱 **[عيادتي — إدارة عيادة أطفال](https://github.com/Thanoon12k/Pediatric-Clinic-manager)** <sub>عيادتي – Pediatric Clinic Manager</sub> — `Flutter`
-- 🔌 **[مضخة الحقنة الطبية الذكية](https://github.com/Thanoon12k/flutter-arduino-based-syringe-pump)** <sub>مضخة الحقنة الطبية الذكية | Smart Medical Syringe Pump</sub> — `Arduino` · `Flutter`
 
 
 ---
@@ -211,10 +211,11 @@
 
 
 <details>
-<summary><h3>🤖 AI — 7</h3></summary>
+<summary><h3>🤖 AI — 8</h3></summary>
 
 
 <p align="center">
+<a href="#" title="صفحة الكود الذهبي — تدير نفسها"><img src="docs/projects/facebook-automation.webp" width="32%" alt="Golden Code — Self-running Facebook page"></a>
 <a href="https://github.com/Thanoon12k/green-chrome-notes" title="ملاحظات ذكية — إضافة كروم"><img src="docs/projects/green-chrome-notes.webp" width="32%" alt="🌿 AI Notes — Smart Tab Capture"></a>
 <a href="https://github.com/Thanoon12k/Arabic-Text-To-Audio-Converter" title="تحويل النص العربي إلى صوت"><img src="docs/projects/Arabic-Text-To-Audio-Converter.webp" width="32%" alt="Arabic Text‑To‑Audio Converter (Flask + Tailwind)"></a>
 <a href="https://github.com/Thanoon12k/Social-Media-Automation" title="مدير صفحات السوشيال ميديا"><img src="docs/projects/Social-Media-Automation.webp" width="32%" alt="Social Media Automation"></a>
@@ -225,6 +226,7 @@
 </p>
 
 
+- **[صفحة الكود الذهبي — تدير نفسها](https://make1it.pythonanywhere.com)** <sub>Golden Code — Self-running Facebook page</sub> — `Python` · `Graph API` · `MCP` · `AI Agent`<br><sub dir="auto">صفحة فيسبوك مؤتمتة بالكامل: تصميم كروت المنشورات يتولّد تلقائياً بالكود، النشر والجدولة عبر Graph API من خلال وكيل ذكاء اصطناعي، ومتابعة…</sub>
 - **[ملاحظات ذكية — إضافة كروم](https://github.com/Thanoon12k/green-chrome-notes)** <sub>🌿 AI Notes — Smart Tab Capture</sub> — `Browser extension`<br><sub dir="auto">&gt; A premium Chrome extension powered by Groq AI to capture, organize, and tag notes from any browser tab.</sub>
 - **[تحويل النص العربي إلى صوت](https://github.com/Thanoon12k/Arabic-Text-To-Audio-Converter)** <sub>Arabic Text‑To‑Audio Converter (Flask + Tailwind)</sub> — `Excel` · `Flask` · `video`<br><sub dir="auto">Arabic Text‑To‑Audio Converter is a modern, login‑free web app that converts Arabic (and English) text into high‑quality MP3 audio. It’s…</sub>
 - **[مدير صفحات السوشيال ميديا](https://github.com/Thanoon12k/Social-Media-Automation)** <sub>Social Media Automation</sub> — `Django`<br><sub dir="auto">ينشر ويجدول المنشورات على صفحات التواصل من داخل السيرفر، ويدعم الربط بوكيل ذكاء اصطناعي يدير المحتوى والردود.</sub>

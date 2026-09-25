@@ -20,6 +20,7 @@
   "Thanoon12k"
  ],
  "repos": [
+  "Thanoon12k/facebook-automation",
   "Thanoon12k/qaser-techani",
   "Thanoon12k/mosul1tourism",
   "Thanoon12k/ZKTeco-ZKFinger-PRINTS-SCANNER",
@@ -214,6 +215,31 @@
   "EmployeeManager_Flutter": {
    "hide": true,
    "_why": "older copy of Employee-Manager"
+  },
+  "facebook-automation": {
+   "title_ar": "صفحة الكود الذهبي — تدير نفسها",
+   "title": "Golden Code — Self-running Facebook page",
+   "description_ar": "صفحة فيسبوك مؤتمتة بالكامل: تصميم كروت المنشورات يتولّد تلقائياً بالكود، النشر والجدولة عبر Graph API من خلال وكيل ذكاء اصطناعي، ومتابعة الإحصائيات والنمو وأرشفة المنشورات — بدون تدخل يدوي.",
+   "category": "ai",
+   "featured": 1,
+   "private": true,
+   "no_run": true,
+   "live_url": "https://www.facebook.com/goldencode114",
+   "stack": [
+    "Python",
+    "Graph API",
+    "MCP",
+    "AI Agent",
+    "Playwright"
+   ],
+   "images": [
+    "images/cover.png",
+    "images/s05_ai.png",
+    "images/s02_digital.png",
+    "images/s08_appvsweb.png",
+    "images/s12_grad.png",
+    "images/s14_bug.png"
+   ]
   }
  },
  "profile": {

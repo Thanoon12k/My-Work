@@ -503,7 +503,8 @@ def render_templates(project, repo_dir, outdir, browser, limit=4):
     tpl_dirs, static_dirs = [], []
     for d, dirs, files in os.walk(repo_dir):
         dirs[:] = [x for x in dirs if x not in ('node_modules', '.git', 'venv', '.venv',
-                                                '__pycache__', 'site-packages')]
+                                                '__pycache__', 'site-packages', 'out')
+                   and not os.path.exists(os.path.join(d, x, '.git'))]
         base = os.path.basename(d)
         if base == 'templates':
             tpl_dirs.append(d)

@@ -24,7 +24,7 @@ def pick_color(slug):
 def files(root, exts, skip=()):
     for d, dirs, fs in os.walk(root):
         dirs[:] = [x for x in dirs if x not in SKIP_DIRS and not x.startswith('.')
-                   and x not in skip]
+                   and x not in skip and not os.path.exists(os.path.join(d, x, '.git'))]
         for f in fs:
             if f.lower().endswith(exts):
                 yield os.path.join(d, f)

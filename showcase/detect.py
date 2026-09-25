@@ -49,8 +49,13 @@ def walk(root):
     for d, dirs, files in os.walk(root):
         depth = d.count(os.sep) - base
         dirs[:] = [x for x in dirs if x not in SKIP_DIRS and not x.startswith('.')
-                   and depth < MAX_DEPTH]
+                   and depth < MAX_DEPTH and not nested_repo(os.path.join(d, x))]
         yield d, files
+
+
+def nested_repo(d):
+    """A folder that is its own git repo (e.g. clones inside out/) belongs to another project."""
+    return os.path.exists(os.path.join(d, '.git'))
 
 
 def read(path, limit=200_000):
