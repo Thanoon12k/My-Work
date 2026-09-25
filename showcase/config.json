@@ -1,0 +1,285 @@
+{
+ "site": {
+  "title": "ذنون يونس محمد — مطوّر Flutter و Web",
+  "tagline": "أبني تطبيقات موبايل ومواقع وأنظمة إدارة، وأربطها بالذكاء الاصطناعي والأجهزة. هنا كل مشاريعي — كل وحدة منها مشغّلة ومصوّرة فعلياً.",
+  "whatsapp": "https://wa.me/9647702790915",
+  "phone": "+9647702790915",
+  "github": "https://github.com/Thanoon12k"
+ },
+ "deploy": {
+  "user": "make1it",
+  "remote_dir": "portfolio",
+  "remove_old": [
+   "mysite"
+  ]
+ },
+ "out": "out",
+ "max_pages": 5,
+ "download_readme_images": true,
+ "github_owners": [
+  "Thanoon12k"
+ ],
+ "repos": [
+  "Thanoon12k/qaser-techani",
+  "Thanoon12k/mosul1tourism",
+  "Thanoon12k/ZKTeco-ZKFinger-PRINTS-SCANNER",
+  "Thanoon12k/medicine-reminder",
+  "Thanoon12k/green-chrome-notes",
+  "Thanoon12k/Injaz",
+  "Thanoon12k/Pediatric-Clinic-manager",
+  "Thanoon12k/moalidaty",
+  "Thanoon12k/moalidaty-front-end",
+  "Thanoon12k/flutter-arduino-based-syringe-pump",
+  "Thanoon12k/AI-agents-basics",
+  "Thanoon12k/Ideas-Store",
+  "Thanoon12k/thesis-sources-notes",
+  "Thanoon12k/projects-manager",
+  "Thanoon12k/Employee-Manager",
+  "Thanoon12k/customers-manager",
+  "Thanoon12k/AI-cloud-network-manager",
+  "Thanoon12k/Thanoon12k.github.io",
+  "Thanoon12k/chess-analyser",
+  "Thanoon12k/Arabic-Text-To-Audio-Converter",
+  "Thanoon12k/AI-Arabic-handwriting-OCR",
+  "Thanoon12k/ROUTER-AQM-FIFO-CODEL-PIE-comparison",
+  "Thanoon12k/EmployeeManager_Flutter",
+  "Thanoon12k/chatgpt-to-word-extension",
+  "Thanoon12k/excel_dynamic_date",
+  "Thanoon12k/ESP_TEMP_SENSOR",
+  "Thanoon12k/BubbleSheetScanner",
+  "MetaluxTech/Cloud-Simulation-AI",
+  "Thanoon12k/Social-Media-Automation",
+  "Thanoon12k/NextJs-Share-Prompts",
+  "Thanoon12k/IOT-Temperature-Sensor",
+  "Thanoon12k/Video-Audio-Studio",
+  "Thanoon12k/Arduino-As-OscilloScope",
+  "Thanoon12k/voice_enhancer_ai",
+  "Thanoon12k/Fingerprints-Attendance-System",
+  "Thanoon12k/background_reomver_vercel",
+  "Thanoon12k/pdf-words-counter",
+  "Thanoon12k/jupyter-lstm-ga",
+  "MetaluxTech/IraqiPad_Mobile",
+  "Thanoon12k/React-Blog",
+  "MetaluxTech/CatFactsExample",
+  "MetaluxTech/LSTM-GA-API",
+  "Thanoon12k/Tik-Tok-Pass-captcha",
+  "Thanoon12k/text2mp3_converter",
+  "Thanoon12k/background_remover",
+  "Thanoon12k/desktopBackgroundChange",
+  "Thanoon12k/Youtube-Translator",
+  "Thanoon12k/cloud-network-simulator",
+  "MetaluxTech/FogSimulation",
+  "Thanoon12k/Askme",
+  "Thanoon12k/askpdf-backend",
+  "Thanoon12k/hand-moving-sensor",
+  "Thanoon12k/MRFO-Optimizer",
+  "Thanoon12k/Speak-Loud",
+  "Thanoon12k/EmployeesPromotionApp",
+  "Thanoon12k/Chat-app-api",
+  "Thanoon12k/Chat-App-Flutter",
+  "MetaluxTech/metalux-company",
+  "Thanoon12k/converter",
+  "MetaluxTech/airline-management-app",
+  "MetaluxTech/Image-resizing",
+  "MetaluxTech/-shortcut-url-react",
+  "Thanoon12k/electric",
+  "MetaluxTech/RestaurantV1Frontend",
+  "MetaluxTech/Icream-template",
+  "MetaluxTech/Portfolio"
+ ],
+ "skip": [
+  "Thanoon12k"
+ ],
+ "local_dirs": [],
+ "projects": {
+  "moalidaty-front-end": {
+   "title_ar": "مولدتي",
+   "category": "mobile",
+   "featured": 1,
+   "description_ar": "نظام متكامل لإدارة المولدات الأهلية: المشتركين والأمبيرات، الدفعات، الرواتب وكادر التشغيل، والأرباح والخسائر. البيانات تُخزن على سيرفر لضمان أمانها."
+  },
+  "moalidaty": {
+   "title_ar": "مولدتي — السيرفر ولوحة الإدارة",
+   "featured": 2,
+   "description_ar": "الواجهة الخلفية لتطبيق مولدتي: حسابات المشتركين، الدفعات والتقارير، ولوحة إدارة كاملة."
+  },
+  "BubbleSheetScanner": {
+   "title_ar": "ببل شيت سكنر",
+   "featured": 3,
+   "description_ar": "يقرأ أوراق الأجوبة (Bubble Sheet) للجامعات والمدارس بدقة عالية: اسم الطالب، إجاباته، ودرجته — ويصدّرها لملف إكسل جاهز. يشتغل بالكامل بدون إنترنت."
+  },
+  "IOT-Temperature-Sensor": {
+   "title_ar": "مراقب حرارة المفقسة",
+   "category": "hw",
+   "description_ar": "قراءة لحظية ومستمرة لدرجة الحرارة داخل المفقسة، مع مخططات بيانية بالساعة أو الأسبوع أو الشهر أو خلال فترة تحددها أنت."
+  },
+  "ESP_TEMP_SENSOR": {
+   "title_ar": "لوحة حساس الحرارة ESP",
+   "category": "hw",
+   "description_ar": "لوحة ويب تعرض قراءات حساس الحرارة المربوط بـ ESP بشكل لحظي."
+  },
+  "Employee-Manager": {
+   "title_ar": "إدارة موظفين الدائرة",
+   "featured": 4,
+   "description_ar": "نظام شؤون موظفين بصلاحيات متعددة (مدير / موظف): إرسال الاستبيانات والكتب الرسمية بصيغة PDF أو صور، الرد عليها، عرض النتائج، ولوحة مراقبة لمدير الدائرة."
+  },
+  "Pediatric-Clinic-manager": {
+   "title_ar": "عيادتي — إدارة عيادة أطفال",
+   "featured": 5,
+   "description_ar": "نظام كامل لعيادة الأطفال: صلاحيات (مدير / طبيب / مريض)، ملفات المرضى، المواعيد، الوصفات، اللقاحات ومخططات النمو، محادثة لحظية، وتقارير PDF بالعربي."
+  },
+  "flutter-arduino-based-syringe-pump": {
+   "title_ar": "مضخة الحقنة الطبية الذكية",
+   "category": "hw",
+   "featured": 6,
+   "description_ar": "تطبيق يتحكم بمضخة حقنة طبية عبر الأردوينو: إدارة الجرعات، تحذيرات سلامة قبل الحقن، ومراقبة لحظية مع رسم ثلاثي الأبعاد للمحقنة."
+  },
+  "medicine-reminder": {
+   "title_ar": "تذكير الدواء",
+   "featured": 7,
+   "description_ar": "تطبيق تذكير بالدواء لكبار السن: عربي بالكامل، خط كبير، يشتغل بدون إنترنت نهائياً، وما يطلب حساب ولا أي معلومة شخصية."
+  },
+  "ZKTeco-ZKFinger-PRINTS-SCANNER": {
+   "title_ar": "ربط قارئ بصمة ZKTeco",
+   "category": "hw",
+   "description_ar": "ربط أجهزة بصمة ZKTeco بأنظمة الحضور والانصراف — قراءة البصمات ومزامنتها مع قاعدة البيانات مباشرة."
+  },
+  "Social-Media-Automation": {
+   "title_ar": "مدير صفحات السوشيال ميديا",
+   "category": "ai",
+   "description_ar": "ينشر ويجدول المنشورات على صفحات التواصل من داخل السيرفر، ويدعم الربط بوكيل ذكاء اصطناعي يدير المحتوى والردود."
+  },
+  "customers-manager": {
+   "title_ar": "نظام إدارة الفواتير والاشتراكات"
+  },
+  "Injaz": {
+   "title_ar": "إنجاز — مدير المهام"
+  },
+  "Ideas-Store": {
+   "title_ar": "فِكرة — مخزن الأفكار"
+  },
+  "mosul1tourism": {
+   "title_ar": "السياحة في الموصل",
+   "featured": 8
+  },
+  "qaser-techani": {
+   "title_ar": "قصر التقني"
+  },
+  "green-chrome-notes": {
+   "title_ar": "ملاحظات ذكية — إضافة كروم",
+   "category": "ai"
+  },
+  "chatgpt-to-word-extension": {
+   "title_ar": "ChatGPT إلى Word — إضافة كروم"
+  },
+  "Arabic-Text-To-Audio-Converter": {
+   "title_ar": "تحويل النص العربي إلى صوت",
+   "category": "ai"
+  },
+  "AI-Arabic-handwriting-OCR": {
+   "title_ar": "التعرف على خط اليد العربي",
+   "category": "ai"
+  },
+  "thesis-sources-notes": {
+   "title_ar": "مدير مصادر الرسالة"
+  },
+  "Fingerprints-Attendance-System": {
+   "title_ar": "نظام الحضور بالبصمة",
+   "category": "hw"
+  },
+  "projects-manager": {
+   "title_ar": "مدير المشاريع"
+  },
+  "Youtube-Translator": {
+   "title_ar": "مترجم يوتيوب اللحظي",
+   "category": "ai"
+  },
+  "background_remover": {
+   "title_ar": "إزالة خلفية الصور",
+   "category": "ai"
+  },
+  "text2mp3_converter": {
+   "title_ar": "تحويل النص إلى MP3"
+  },
+  "voice_enhancer_ai": {
+   "hide": true
+  },
+  "Thanoon12k.github.io": {
+   "title_ar": "موقعي الشخصي القديم"
+  },
+  "background_reomver_vercel": {
+   "hide": true,
+   "_why": "duplicate of background_remover"
+  },
+  "EmployeeManager_Flutter": {
+   "hide": true,
+   "_why": "older copy of Employee-Manager"
+  }
+ },
+ "profile": {
+  "name": "ذنون يونس محمد",
+  "name_en": "Thanoon Younis Mohammed",
+  "role": "مطوّر Flutter و Web · Backend",
+  "role_en": "Flutter & Web Developer · Backend",
+  "location": "الموصل، العراق — متاح للعمل عن بعد أو حضورياً",
+  "photo": "me.jpg",
+  "bio": "مهندس تقنيات حاسوب (شبكات واتصالات) من الموصل. أشتغل من 2019 على تطبيقات Flutter للموبايل وأنظمة خلفية بـ Django و Flask، وأربطها بالذكاء الاصطناعي وأجهزة ESP32 والأردوينو. أحب أبني برامج تحل مشكلة حقيقية عند الناس: عيادات، مولدات، دوائر، ومدارس.",
+  "email": "engthanoon1@gmail.com",
+  "stats": [
+   [
+    "+5",
+    "سنوات خبرة"
+   ],
+   [
+    "+15",
+    "تقنية"
+   ]
+  ],
+  "experience": [
+   {
+    "title": "مطوّر Backend و Flutter",
+    "years": "2019 — الآن",
+    "text": "تطبيقات موبايل متعددة المنصات بـ Flutter، وأنظمة خلفية قابلة للتوسع بـ Django و Flask، ودمج حلول الذكاء الاصطناعي وإدارة المشاريع من البداية للتسليم."
+   },
+   {
+    "title": "مطوّر تطبيقات موبايل ودعم فني",
+    "years": "2022 — 2023",
+    "text": "تطبيقات Flutter مع Firebase، أنظمة الإشعارات وقواعد البيانات اللحظية، ودعم المستخدمين."
+   },
+   {
+    "title": "مدير سيرفرات",
+    "years": "2021 — 2023",
+    "text": "إدارة سيرفرات Ubuntu ونشر تطبيقات الويب مع Gunicorn و Redis، والحماية ومراقبة الأداء."
+   },
+   {
+    "title": "مطوّر تطبيقات ديسكتوب",
+    "years": "2019 — 2020",
+    "text": "تطبيقات مؤسسات بـ Visual Basic و C/C++، وتدريب الزبائن عليها."
+   }
+  ],
+  "education": "بكالوريوس هندسة تقنيات الحاسوب — شبكات واتصالات · الجامعة التقنية الشمالية (2018 — 2022)",
+  "training": [
+   "معسكر Hello Muscat للبرمجة (2023)",
+   "مساهم بفريق MetaLux"
+  ],
+  "skills": [
+   "Flutter",
+   "Dart",
+   "Bloc / Provider",
+   "Firebase",
+   "Python",
+   "Django",
+   "Flask",
+   "REST APIs",
+   "PostgreSQL",
+   "SQLite",
+   "Linux / Ubuntu",
+   "ESP32 / Arduino",
+   "IoT & MQTT",
+   "AI / ML",
+   "HTML / CSS / JS",
+   "C / C++"
+  ],
+  "languages": "العربية (الأم) · الإنكليزية (ممتازة)"
+ }
+}
