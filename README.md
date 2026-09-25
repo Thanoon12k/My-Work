@@ -5,7 +5,7 @@
 <img src="docs/banner-light.png" width="100%" alt="Thanoon Younis Mohammed"></picture></a>
 
 <a href="https://make1it.pythonanywhere.com"><img src="https://img.shields.io/badge/Live_site-make1it.pythonanywhere.com-FFC93C?style=for-the-badge&labelColor=16130D" alt="Live site"></a>
-<br><img src="https://img.shields.io/badge/projects-64-12B99C?style=flat-square" alt="">
+<br><img src="https://img.shields.io/badge/projects-65-12B99C?style=flat-square" alt="">
  <img src="https://img.shields.io/badge/real_screenshots-31-4361EE?style=flat-square" alt="">
  <img src="https://img.shields.io/badge/categories-8-FF5C39?style=flat-square" alt="">
  <a href="https://wa.me/9647702790915"><img src="https://img.shields.io/badge/WhatsApp-contact-25D366?style=flat-square&logo=whatsapp&logoColor=white" alt="WhatsApp"></a>
@@ -135,7 +135,7 @@
 
 
 <details open>
-<summary><h3>📱 Mobile — 7</h3></summary>
+<summary><h3>📱 Mobile — 8</h3></summary>
 
 
 <p align="center">
@@ -144,6 +144,7 @@
 <a href="https://github.com/Thanoon12k/Pediatric-Clinic-manager" title="عيادتي — إدارة عيادة أطفال"><img src="docs/projects/Pediatric-Clinic-manager.webp" width="32%" alt="عيادتي – Pediatric Clinic Manager"></a>
 <a href="https://github.com/Thanoon12k/medicine-reminder" title="تذكير الدواء"><img src="docs/projects/medicine-reminder.webp" width="32%" alt="💊 What it does"></a>
 <a href="https://github.com/Thanoon12k/Chat-App-Flutter" title="Chat App Flutter"><img src="docs/projects/Chat-App-Flutter.webp" width="32%" alt="Chat App Flutter"></a>
+<a href="https://github.com/Thanoon12k/real-snack-catcher" title="حارس الليل — كاشف الحركة بالكاميرا"><img src="docs/projects/real-snack-catcher.webp" width="32%" alt="Night Guard — Real Snake Catcher"></a>
 <a href="https://github.com/Thanoon12k/hand-moving-sensor" title="Hand Moving Sensor"><img src="docs/projects/hand-moving-sensor.webp" width="32%" alt="Hand Moving Sensor"></a>
 <a href="https://github.com/Thanoon12k/Speak-Loud" title="Speak Loud"><img src="docs/projects/Speak-Loud.webp" width="32%" alt="Speak Loud"></a>
 </p>
@@ -154,6 +155,7 @@
 - **[عيادتي — إدارة عيادة أطفال](https://github.com/Thanoon12k/Pediatric-Clinic-manager)** <sub>عيادتي – Pediatric Clinic Manager</sub> — `Flutter`<br><sub dir="auto">نظام كامل لعيادة الأطفال: صلاحيات (مدير / طبيب / مريض)، ملفات المرضى، المواعيد، الوصفات، اللقاحات ومخططات النمو، محادثة لحظية، وتقارير…</sub>
 - **[تذكير الدواء](https://github.com/Thanoon12k/medicine-reminder)** <sub>💊 What it does</sub> — `Flutter`<br><sub dir="auto">تطبيق تذكير بالدواء لكبار السن: عربي بالكامل، خط كبير، يشتغل بدون إنترنت نهائياً، وما يطلب حساب ولا أي معلومة شخصية.</sub>
 - **[Chat App Flutter](https://github.com/Thanoon12k/Chat-App-Flutter)** — `Flutter`
+- **[حارس الليل — كاشف الحركة بالكاميرا](https://github.com/Thanoon12k/real-snack-catcher)** <sub>Night Guard — Real Snake Catcher</sub> — `Flutter` · `Camera` · `Motion detection` · `Telegram Bot`<br><sub dir="auto">تطبيق أندرويد يحوّل الموبايل لكاميرا مراقبة ليلية: يحلل الصورة كل ثلث ثانية، وأول ما يحس بحركة يسجّل فيديو ويحفظه، ويرسل المقطع تلقائياً…</sub>
 - **[Hand Moving Sensor](https://github.com/Thanoon12k/hand-moving-sensor)** — `Arduino` · `Flutter`
 - **[Speak Loud](https://github.com/Thanoon12k/Speak-Loud)** — `Flutter`
 

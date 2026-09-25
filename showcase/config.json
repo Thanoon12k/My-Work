@@ -21,6 +21,7 @@
  ],
  "repos": [
   "Thanoon12k/facebook-automation",
+  "Thanoon12k/real-snack-catcher",
   "Thanoon12k/qaser-techani",
   "Thanoon12k/mosul1tourism",
   "Thanoon12k/ZKTeco-ZKFinger-PRINTS-SCANNER",
@@ -239,6 +240,18 @@
     "images/s08_appvsweb.png",
     "images/s12_grad.png",
     "images/s14_bug.png"
+   ]
+  },
+  "real-snack-catcher": {
+   "title_ar": "حارس الليل — كاشف الحركة بالكاميرا",
+   "title": "Night Guard — Real Snake Catcher",
+   "description_ar": "تطبيق أندرويد يحوّل الموبايل لكاميرا مراقبة ليلية: يحلل الصورة كل ثلث ثانية، وأول ما يحس بحركة يسجّل فيديو ويحفظه، ويرسل المقطع تلقائياً على تيليگرام، ثم يرجع يراقب. بيه وضع ليل ونهار وصفحة تسجيلات لمراجعة اللي انمسك.",
+   "category": "mobile",
+   "stack": [
+    "Flutter",
+    "Camera",
+    "Motion detection",
+    "Telegram Bot"
    ]
   }
  },
