@@ -24,6 +24,7 @@
   "Thanoon12k/real-snack-catcher",
   "Thanoon12k/qaser-techani",
   "Thanoon12k/mosul1tourism",
+    "Thanoon12k/shajjar",
   "Thanoon12k/ZKTeco-ZKFinger-PRINTS-SCANNER",
   "Thanoon12k/medicine-reminder",
   "Thanoon12k/green-chrome-notes",
@@ -164,6 +165,12 @@
    "title_ar": "السياحة في الموصل",
    "featured": 8
   },
+    "shajjar": {
+      "title_ar": "شجّر — منصة التشجير المجتمعي",
+      "category": "web",
+      "description_ar": "منصة Django لتنظيم طلبات الأشجار، متابعة الزراعة، خرائط المواقع، التقارير البيئية، وإدارة المتطوعين.",
+      "live_url": "https://shajjar.pythonanywhere.com/"
+    },
   "qaser-techani": {
    "title_ar": "قصر التقني"
   },
