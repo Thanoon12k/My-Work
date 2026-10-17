@@ -396,6 +396,18 @@ def api_password():
     return jsonify(ok=True)
 
 
+# ---------------------------------------------------------------- optional automation API
+# Import inside the package for local testing, or from the deployed site directory.
+try:
+    from .project_api import register as register_project_api
+except ImportError:
+    from project_api import register as register_project_api
+
+register_project_api(app, lock=LOCK, data_file=CUSTOM, base_projects=base_projects,
+                     custom=custom, merged=merged, save=save, store_image=store_image,
+                     categories=CATS)
+
+
 # ---------------------------------------------------------------- pages
 
 STYLE = '''<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
