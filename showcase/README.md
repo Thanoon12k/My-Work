@@ -70,3 +70,52 @@ python -m showcase deploy --user make1it
 - `deploy`: `user`، `remote_dir`، و`remove_old` (مجلدات قديمة تنمسح بالسيرفر).
 
 كل شي يتولد داخل `out/` (مو بالريبو): الريبوهات، البيئات، اللقطات، والموقع.
+
+## مشروع API خفيف للوكلاء — أقل توكنات، بدون MCP إضافي
+
+النسخة الجديدة تضيف REST API إلى Flask الحالي بدون تغيير تصميم الموقع أو لوحة الإدارة.
+الـ API **مقفلة افتراضياً** حتى يتم إعداد مفتاح سري على الخادم.
+محتوى `portfolio_data/custom.json` الحالي يبقى كما هو خارج مجلد النشر.
+
+### تفعيل المفتاح (مرة واحدة فقط)
+
+داخل PythonAnywhere Bash console، نفّذ (المفتاح يبقى خارج GitHub):
+
+```bash
+mkdir -p ~/portfolio_data
+python3 -c "import secrets; print(secrets.token_urlsafe(32))" > ~/portfolio_data/api_token
+chmod 600 ~/portfolio_data/api_token
+```
+
+احتفظ بنسخة آمنة من المفتاح الذي أنشأته لاستخدامه في أداة التحديث. لا تشارك المفتاح في المحادثات أو GitHub أو ملفات الواجهة. بدلاً من الملف يمكن ضبط المتغير `SHOWCASE_API_TOKEN` على السيرفر. احذف الملف أو غيّر قيمته لإبطال المفتاح فوراً. بعد تحديث الملفات شغّل `python -m showcase build` و `python -m showcase deploy` لإيصال endpoint إلى PythonAnywhere.
+
+### أمثلة مختصرة
+
+```bash
+export PORTFOLIO_API_TOKEN='YOUR_PRIVATE_TOKEN'
+BASE='https://make1it.pythonanywhere.com/api/v1/projects'
+# قراءة أسماء فقط (عشرات التوكنات، مو كل الـ JSON)
+curl -H "Authorization: Bearer $PORTFOLIO_API_TOKEN" "$BASE?fields=slug,title"
+# قراءة مشروع محدد فقط
+curl -H "Authorization: Bearer $PORTFOLIO_API_TOKEN" "$BASE/shajjar?fields=slug,title,desc"
+# PATCH: حدّث الوصف فقط؛ تبقى الصور والترتيب وباقي المعلومات
+curl -X PATCH "$BASE/shajjar" -H "Authorization: Bearer $PORTFOLIO_API_TOKEN" \
+  -H 'Content-Type: application/json' \
+  -d '{"desc":"منصة مجتمعية لإدارة التشجير والمتابعة"}'
+# إنشاء مشروع ثم رفع صورته (لا يظهر المشروع الجديد قبل إضافة صورة)
+curl -X POST "$BASE" -H "Authorization: Bearer $PORTFOLIO_API_TOKEN" \
+  -H 'Content-Type: application/json' \
+  -d '{"slug":"my-project","title":"مشروعي","cat":"web","repo":"https://github.com/Thanoon12k/My-Work"}'
+curl -X POST "$BASE/my-project/images" -H "Authorization: Bearer $PORTFOLIO_API_TOKEN" \
+  -F "image=@screenshot.png"
+# حذف مشروع منشأ عبر API فقط؛ المشاريع الأصلية تُخفى بواسطة PATCH {"hidden":true}
+curl -X DELETE "$BASE/my-project" -H "Authorization: Bearer $PORTFOLIO_API_TOKEN"
+```
+
+الحقول المتاحة للتعديل: `title,en,desc,cat,stack,repo,live_url,featured,hidden`.
+أرسل `null` لإلغاء override والعودة لقيمة المشروع الأصلية، و `If-Match` بقيمة
+`ETag` من GET لتجنّب الكتابة فوق تحديث متزامن (يرجع 412 عند التعارض).
+`GET ?fields=slug,title` يرسل حقلين فقط، و `PATCH` يرجّع تأكيداً مختصراً بدل كامل المشروع.
+كل الاستجابات `Cache-Control: no-store`، والمفتاح لا يُقبل في query string.
+
+**ملاحظة:** بيانات API تعدّل العرض الحي مباشرةً بعد نشر إصدار السيرفر، لكن لا تُرسل التغييرات تلقائياً إلى `config.json` أو README في GitHub. المزامنة مع GitHub خطوة منفصلة.
