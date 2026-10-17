@@ -140,6 +140,7 @@ def build(cfg):
     json.dump(me, open(os.path.join(site, 'profile.json'), 'w', encoding='utf-8'),
               ensure_ascii=False)
     shutil.copy(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'server.py'), site)
+    shutil.copy(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'project_api.py'), site)
     size = sum(os.path.getsize(os.path.join(dp, f)) for dp, _, fs in os.walk(site) for f in fs)
     print('site: %d projects, %.1f MB -> %s' % (len(data), size / 1e6, site))
     return site
