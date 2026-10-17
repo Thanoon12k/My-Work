@@ -5,8 +5,8 @@
 <img src="docs/banner-light.png" width="100%" alt="Thanoon Younis Mohammed"></picture></a>
 
 <a href="https://make1it.pythonanywhere.com"><img src="https://img.shields.io/badge/Live_site-make1it.pythonanywhere.com-FFC93C?style=for-the-badge&labelColor=16130D" alt="Live site"></a>
-<br><img src="https://img.shields.io/badge/projects-65-12B99C?style=flat-square" alt="">
- <img src="https://img.shields.io/badge/real_screenshots-31-4361EE?style=flat-square" alt="">
+<br><img src="https://img.shields.io/badge/projects-66-12B99C?style=flat-square" alt="">
+ <img src="https://img.shields.io/badge/real_screenshots-32-4361EE?style=flat-square" alt="">
  <img src="https://img.shields.io/badge/categories-8-FF5C39?style=flat-square" alt="">
  <a href="https://wa.me/9647702790915"><img src="https://img.shields.io/badge/WhatsApp-contact-25D366?style=flat-square&logo=whatsapp&logoColor=white" alt="WhatsApp"></a>
  <a href="mailto:engthanoon1@gmail.com"><img src="https://img.shields.io/badge/Email-engthanoon1%40gmail.com-EA4335?style=flat-square&logo=gmail&logoColor=white" alt="Email"></a>
@@ -77,12 +77,13 @@
 
 
 <details open>
-<summary><h3>🌐 Web — 23</h3></summary>
+<summary><h3>🌐 Web — 24</h3></summary>
 
 
 <p align="center">
 <a href="https://github.com/Thanoon12k/moalidaty" title="مولدتي — السيرفر ولوحة الإدارة"><img src="docs/projects/moalidaty.webp" width="32%" alt="Moalidaty"></a>
 <a href="https://github.com/Thanoon12k/mosul1tourism" title="السياحة في الموصل"><img src="docs/projects/mosul1tourism.webp" width="32%" alt="حارث فراس — السياحة في الموصل"></a>
+<a href="https://github.com/Thanoon12k/shajjar" title="شجّر — منصة حملة التشجير"><img src="docs/projects/shajjar.webp" width="32%" alt="Shajjar — Community Tree Planting"></a>
 <a href="https://github.com/Thanoon12k/qaser-techani" title="قصر التقني"><img src="docs/projects/qaser-techani.webp" width="32%" alt="Qaser Techani"></a>
 <a href="https://github.com/Thanoon12k/Ideas-Store" title="فِكرة — مخزن الأفكار"><img src="docs/projects/Ideas-Store.webp" width="32%" alt="فِكْرة (Fikra) — Ideas Store"></a>
 <a href="https://github.com/Thanoon12k/customers-manager" title="نظام إدارة الفواتير والاشتراكات"><img src="docs/projects/customers-manager.webp" width="32%" alt="نظام إدارة الفواتير"></a>
@@ -109,6 +110,7 @@
 
 - **[مولدتي — السيرفر ولوحة الإدارة](https://github.com/Thanoon12k/moalidaty)** <sub>Moalidaty</sub> — `Django` · `DRF`<br><sub dir="auto">الواجهة الخلفية لتطبيق مولدتي: حسابات المشتركين، الدفعات والتقارير، ولوحة إدارة كاملة.</sub>
 - **[السياحة في الموصل](https://github.com/Thanoon12k/mosul1tourism)** <sub>حارث فراس — السياحة في الموصل</sub> — `Flask`<br><sub dir="auto">موقع ثنائي اللغة (العربية والإنكليزية) مبني بـ Flask، ويضم:</sub>
+- **[شجّر — منصة حملة التشجير](https://github.com/Thanoon12k/shajjar)** <sub>Shajjar — Community Tree Planting</sub> — `Django` · `Leaflet` · `OpenStreetMap` · `QR codes`<br><sub dir="auto">موقع حملة #شجّر للتشجير المجتمعي بالموصل ونينوى، يتابع الشجرة من الطلب لحد ما تصير ظل: تطلب شتلة وتتابع حالة طلبك، خريطة لمواقع الزراعة،…</sub>
 - **[قصر التقني](https://github.com/Thanoon12k/qaser-techani)** <sub>Qaser Techani</sub> — `Flask` · `HTML/CSS` · `react` · `tailwindcss`
 - **[فِكرة — مخزن الأفكار](https://github.com/Thanoon12k/Ideas-Store)** <sub>فِكْرة (Fikra) — Ideas Store</sub> — `Django` · `DRF`<br><sub dir="auto">A minimalist Django web application for capturing and organizing future ideas with voice notes, images, and rich descriptions.</sub>
 - **[نظام إدارة الفواتير والاشتراكات](https://github.com/Thanoon12k/customers-manager)** <sub>نظام إدارة الفواتير</sub> — `Django`<br><sub dir="auto">نظام شامل لإدارة الفواتير والاشتراكات بالدينار العراقي باستخدام Django و Tailwind CSS.</sub>

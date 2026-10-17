@@ -20,6 +20,7 @@
   "Thanoon12k"
  ],
  "repos": [
+  "Thanoon12k/shajjar",
   "Thanoon12k/facebook-automation",
   "Thanoon12k/real-snack-catcher",
   "Thanoon12k/qaser-techani",
@@ -252,6 +253,20 @@
     "Camera",
     "Motion detection",
     "Telegram Bot"
+   ]
+  },
+  "shajjar": {
+   "title_ar": "شجّر — منصة حملة التشجير",
+   "title": "Shajjar — Community Tree Planting",
+   "description_ar": "موقع حملة #شجّر للتشجير المجتمعي بالموصل ونينوى، يتابع الشجرة من الطلب لحد ما تصير ظل: تطلب شتلة وتتابع حالة طلبك، خريطة لمواقع الزراعة، ملف و QR لكل شجرة، بلاغات بيئية، دليل «شنو أزرع؟»، حملات تطوع، ولوحة أثر بنسبة البقاء الحقيقية. عربي بالكامل وبخمس ثيمات.",
+   "category": "web",
+   "live_url": "https://shajjar.pythonanywhere.com/",
+   "shoot_live": true,
+   "stack": [
+    "Django",
+    "Leaflet",
+    "OpenStreetMap",
+    "QR codes"
    ]
   }
  },

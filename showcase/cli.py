@@ -94,7 +94,11 @@ def shoot_one(cfg, browser, slug, path, url, over):
     print('\n[%s] %s · %s' % (slug, p['primary'], ', '.join(p['stack'][:5])))
 
     shots = []
-    if p['runnable'] and not over.get('no_run'):
+    if over.get('shoot_live') and over.get('live_url'):    # already deployed: crawl the real site
+        shots += capture.crawl(browser, over['live_url'], outdir, 'live',
+                               max_pages=cfg.get('max_pages', 5))
+        print('    live site: %d' % len(shots))
+    elif p['runnable'] and not over.get('no_run'):
         shots += capture.capture_live(browser, p, path, outdir,
                                       os.path.join(cfg['_out'], 'envs'),
                                       max_pages=cfg.get('max_pages', 5))

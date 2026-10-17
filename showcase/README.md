@@ -66,7 +66,8 @@ python -m showcase deploy --user make1it
 - `local_dirs`: مجلدات مشاريع على جهازك مو على GitHub.
 - `projects.<slug>`: تعديلات لكل مشروع:
   `title_ar`, `description_ar`, `category` (`web mobile desktop hw ai sim tools docs`),
-  `featured` (رقم الترتيب)، `live_url`، `no_run`، `hide`.
+  `featured` (رقم الترتيب)، `live_url`، `no_run`، `hide`،
+  و`shoot_live` (يصوّر الموقع المنشور على `live_url` بدل ما يشغّل المشروع محلياً).
 - `deploy`: `user`، `remote_dir`، و`remove_old` (مجلدات قديمة تنمسح بالسيرفر).
 
 كل شي يتولد داخل `out/` (مو بالريبو): الريبوهات، البيئات، اللقطات، والموقع.
