@@ -119,7 +119,8 @@ def shoot_one(cfg, browser, slug, path, url, over):
         print('    repo images: %d' % len(repo_imgs))
     shots += repo_imgs
     for name, html, cap in mockup.make(p, path):
-        if name != 'cover' and any(s['kind'] in ('live', 'template') for s in shots):
+        real = [s for s in shots if s['kind'] in ('live', 'template')]
+        if name != 'cover' and (len(real) >= 2 or real and p['primary'] != 'flutter'):
             continue                  # real UI beats an approximation
         f = name + '.png'
         try:

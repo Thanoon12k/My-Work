@@ -37,7 +37,7 @@ PRIORITY = ['django', 'flask', 'fastapi', 'streamlit', 'gradio', 'next', 'vite',
             'static', 'extension', 'flutter', 'electron', 'node', 'pygui', 'notebook',
             'arduino', 'omnet', 'java', 'dotnet', 'python', 'js', 'docs']
 RUNNABLE = {'django', 'flask', 'fastapi', 'streamlit', 'gradio', 'next', 'vite', 'cra',
-            'node', 'static', 'extension'}
+            'node', 'static', 'extension', 'flutter'}
 
 AI_WORDS = re.compile(r'\b(tensorflow|keras|torch|sklearn|openai|anthropic|langchain|'
                       r'transformers|cv2|opencv|lstm|ocr|whisper|groq|gemini|rembg)\b', re.I)

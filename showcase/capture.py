@@ -253,11 +253,82 @@ def start_extension(root, where, envdir):
     return s, url + page.lstrip('/'), t
 
 
+def flutter_bin():
+    for c in (os.environ.get('FLUTTER'), shutil.which('flutter'), '/opt/flutter/bin/flutter',
+              os.path.expanduser('~/flutter/bin/flutter')):
+        if c and os.path.exists(c):
+            return c
+    return None
+
+
+def flutter_prepare(d, fl, env):
+    """Small, local-only tweaks so a phone app can run in a browser for screenshots."""
+    pub = os.path.join(d, 'pubspec.yaml')
+    spec = open(pub, encoding='utf-8', errors='replace').read()
+    # assets listed in pubspec but not committed (.env and friends): use the example or empty
+    for a in re.findall(r'^\s*-\s*["\']?([^"\'\s#]+)', spec.split('assets:', 1)[-1], re.M):
+        f = os.path.join(d, a)
+        if a.endswith('/') or os.path.exists(f) or not re.search(r'(^|/)\.?[\w.-]+$', a):
+            continue
+        for ex in (f + '.example', f + '.sample', os.path.join(d, '.env.example')):
+            if os.path.isfile(ex):
+                shutil.copy(ex, f)
+                break
+        else:
+            os.makedirs(os.path.dirname(f) or d, exist_ok=True)
+            open(f, 'w').close()
+    # sqflite has no web backend: switch it to the wasm build of SQLite
+    main = os.path.join(d, 'lib', 'main.dart')
+    if re.search(r'^\s+sqflite:', spec, re.M) and 'sqflite_common_ffi_web' not in spec \
+            and os.path.isfile(main):
+        code, _ = run([fl, 'pub', 'add', 'sqflite_common_ffi_web'], d, 600, env)
+        if code == 0:
+            run([fl, 'pub', 'run', 'sqflite_common_ffi_web:setup'], d, 600, env)
+            src = open(main, encoding='utf-8').read()
+            src2 = re.sub(r'(\bmain\s*\([^)]*\)\s*(?:async\s*)?\{)',
+                          r'\1\n  sc_sql.databaseFactory = sc_web.databaseFactoryFfiWeb;',
+                          src, count=1)
+            if src2 != src:
+                src2 = ("import 'package:sqflite/sqflite.dart' as sc_sql;\n"
+                        "import 'package:sqflite_common_ffi_web/sqflite_ffi_web.dart' as sc_web;\n"
+                        + src2)
+                open(main, 'w', encoding='utf-8').write(src2)
+
+
+def start_flutter(root, where, envdir):
+    """Build the Flutter app for the web and serve the result: real UI, not a mockup."""
+    fl = flutter_bin()
+    if not fl:
+        log('flutter SDK not found (set FLUTTER=/path/to/flutter) - using mockups')
+        return None
+    d = os.path.join(root, where)
+    web = os.path.join(d, 'build', 'web')
+    stamp = os.path.join(web, 'main.dart.js')
+    if not os.path.exists(stamp):
+        env = {'CI': 'true', 'FLUTTER_SUPPRESS_ANALYTICS': 'true'}
+        if not os.path.isdir(os.path.join(d, 'web')):
+            run([fl, 'create', '--platforms=web', '.'], d, 300, env)
+        code, out = run([fl, 'pub', 'get'], d, 600, env)
+        flutter_prepare(d, fl, env)
+        if code != 0:
+            log('pub get failed, trying pub upgrade --major-versions')
+            run([fl, 'pub', 'upgrade', '--major-versions'], d, 600, env)
+        log('flutter build web (about a minute)')
+        code, out = run([fl, 'build', 'web', '--release', '--no-web-resources-cdn',
+                         '--no-wasm-dry-run'], d, 900, env)
+        if code != 0 or not os.path.exists(stamp):
+            err = [l for l in out.splitlines() if 'Error' in l or 'error' in l][:3]
+            log('flutter web build failed: ' + ' | '.join(err)[:300])
+            return None
+    s, url, t = static_server(web)
+    return s, url, t
+
+
 STARTERS = {
     'django': start_django, 'flask': start_flask, 'fastapi': start_fastapi,
     'streamlit': start_streamlit, 'gradio': start_gradio, 'static': start_static,
     'extension': start_extension, 'vite': start_npm('vite'), 'cra': start_npm('cra'),
-    'next': start_npm('next'), 'node': start_npm('node'),
+    'next': start_npm('next'), 'node': start_npm('node'), 'flutter': start_flutter,
 }
 
 
@@ -431,6 +502,105 @@ def crawl(browser, url, outdir, prefix, max_pages=5, mobile=True, clip_height=90
     return shots
 
 
+def _img_diff(a, b):
+    """0..1 share of pixels that differ noticeably between two PNG byte strings."""
+    import io
+    from PIL import Image, ImageChops
+    ia = Image.open(io.BytesIO(a)).convert('L').resize((103, 223))
+    ib = Image.open(io.BytesIO(b)).convert('L').resize((103, 223))
+    d = ImageChops.difference(ia, ib).point(lambda v: 255 if v > 24 else 0)
+    return sum(1 for v in d.getdata() if v) / (103 * 223)
+
+
+def _blank(data):
+    import io
+    from PIL import Image, ImageStat
+    im = Image.open(io.BytesIO(data)).convert('L')
+    return max(ImageStat.Stat(im).stddev) < 6
+
+
+FLUTTER_ERRORS = re.compile(r'Bad state|Exception|Error:|MissingPluginException|'
+                            r'Unsupported operation|LateInitializationError|تعذّ?ر تشغيل', re.I)
+
+TAPPABLES_JS = """() => {
+  const vw = innerWidth, vh = innerHeight, seen = new Set();
+  return [...document.querySelectorAll('flt-semantics')]
+    .filter(e => ['button','tab','link','menuitem'].includes(e.getAttribute('role'))
+                 || e.hasAttribute('flt-tappable'))
+    .map(e => { const r = e.getBoundingClientRect();
+                return {x: r.x + r.width / 2, y: r.y + r.height / 2, w: r.width, h: r.height,
+                        label: (e.getAttribute('aria-label') || e.innerText || '').trim()}; })
+    .filter(o => o.w > 8 && o.h > 8 && o.x > 0 && o.y > 56 && o.x < vw && o.y < vh
+                 && !/(log ?out|sign ?out|خروج|حذف|delete|remove)/i.test(o.label))
+    .filter(o => { const k = Math.round(o.x / 20) + ':' + Math.round(o.y / 20);
+                   if (seen.has(k)) return false; seen.add(k); return true; });
+}"""
+
+
+def flutter_shots(browser, url, outdir, max_shots=5):
+    """Open a Flutter web build at phone size, wait past the splash, tap around."""
+    pg = browser.page(412, 892, 2, mobile=True)
+    shots, kept = [], []
+
+    def keep(data, caption):
+        if _blank(data) or any(_img_diff(data, k) < 0.03 for k in kept):
+            return False
+        name = 'live%02d.png' % (len(shots) + 1)
+        open(os.path.join(outdir, name), 'wb').write(data)
+        kept.append(data)
+        shots.append({'file': name, 'kind': 'live', 'device': 'mobile', 'caption': caption})
+        return True
+
+    def load():
+        pg.goto(url, wait_until='load', timeout=60000)
+        first = None
+        for i in range(8):                      # let splash screens / animations finish
+            pg.wait_for_timeout(2500)
+            if i == 1:
+                first = pg.screenshot()
+        return first, pg.screenshot()
+
+    try:
+        first, home = load()
+        try:
+            pg.evaluate("document.querySelector('flt-semantics-placeholder')?.click()")
+            pg.wait_for_timeout(800)
+            text = pg.evaluate("[...document.querySelectorAll('flt-semantics')]"
+                               ".map(e => e.getAttribute('aria-label') || e.innerText || '')"
+                               ".join(' ')")
+            taps = pg.evaluate(TAPPABLES_JS)[:10]
+        except Exception:
+            text, taps = '', []
+        bad = FLUTTER_ERRORS.search(text or '')
+        if bad:
+            log('  app shows an error screen (%s) - not using it' % bad.group(0))
+            return []
+        if first and _img_diff(first, home) > 0.15:
+            keep(first, 'Splash')
+        if not keep(home, 'Home') and not kept:
+            return []
+        for t in taps:
+            if len(shots) >= max_shots:
+                break
+            try:
+                pg.mouse.click(t['x'], t['y'])
+                pg.wait_for_timeout(2500)
+                data = pg.screenshot()
+                if _img_diff(data, home) > 0.08:
+                    keep(data, t['label'][:40] or 'Screen')
+                pg.go_back()
+                pg.wait_for_timeout(1500)
+                if _img_diff(pg.screenshot(), home) > 0.08:
+                    first, home = load()
+                    pg.evaluate("document.querySelector('flt-semantics-placeholder')?.click()")
+                    pg.wait_for_timeout(800)
+            except Exception:
+                continue
+    finally:
+        pg.context.close()
+    return shots
+
+
 def capture_live(browser, project, repo_dir, outdir, envroot, max_pages=5):
     kind = project['primary']
     starter = STARTERS.get(kind)
@@ -465,6 +635,8 @@ def capture_live(browser, project, repo_dir, outdir, envroot, max_pages=5):
                          'caption': 'Extension popup'}]
             finally:
                 pg.context.close()
+        if kind == 'flutter':
+            return flutter_shots(browser, url, outdir)
         return crawl(browser, url, outdir, 'live', max_pages=max_pages)
     finally:
         server.stop()

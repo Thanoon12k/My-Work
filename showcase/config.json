@@ -21,10 +21,19 @@
  ],
  "repos": [
   "Thanoon12k/facebook-automation",
-  "Thanoon12k/real-snack-catcher",
+  "Thanoon12k/flutter-course",
+  "Thanoon12k/joosa-app",
+  "Thanoon12k/Social-Platforms-Manager",
+  "Thanoon12k/dev-monitor",
+  "Thanoon12k/Depts-manager",
+  "Thanoon12k/chrome-extensions",
+  "Thanoon12k/quiet_vault",
+  "Thanoon12k/visitor-dashboard",
+  "Thanoon12k/esp-eggs-monitor",
+  "Thanoon12k/real-snakes-catcher",
   "Thanoon12k/qaser-techani",
   "Thanoon12k/mosul1tourism",
-    "Thanoon12k/shajjar",
+  "Thanoon12k/shajjar",
   "Thanoon12k/ZKTeco-ZKFinger-PRINTS-SCANNER",
   "Thanoon12k/medicine-reminder",
   "Thanoon12k/green-chrome-notes",
@@ -91,6 +100,7 @@
   "MetaluxTech/Portfolio"
  ],
  "skip": [
+  "My-Work",
   "Thanoon12k"
  ],
  "local_dirs": [],
@@ -165,12 +175,12 @@
    "title_ar": "السياحة في الموصل",
    "featured": 8
   },
-    "shajjar": {
-      "title_ar": "شجّر — منصة التشجير المجتمعي",
-      "category": "web",
-      "description_ar": "منصة Django لتنظيم طلبات الأشجار، متابعة الزراعة، خرائط المواقع، التقارير البيئية، وإدارة المتطوعين.",
-      "live_url": "https://shajjar.pythonanywhere.com/"
-    },
+  "shajjar": {
+   "title_ar": "شجّر — منصة التشجير المجتمعي",
+   "category": "web",
+   "description_ar": "منصة Django لتنظيم طلبات الأشجار، متابعة الزراعة، خرائط المواقع، التقارير البيئية، وإدارة المتطوعين.",
+   "live_url": "https://shajjar.pythonanywhere.com/"
+  },
   "qaser-techani": {
    "title_ar": "قصر التقني"
   },
@@ -249,7 +259,7 @@
     "images/s14_bug.png"
    ]
   },
-  "real-snack-catcher": {
+  "real-snakes-catcher": {
    "title_ar": "حارس الليل — كاشف الحركة بالكاميرا",
    "title": "Night Guard — Real Snake Catcher",
    "description_ar": "تطبيق أندرويد يحوّل الموبايل لكاميرا مراقبة ليلية: يحلل الصورة كل ثلث ثانية، وأول ما يحس بحركة يسجّل فيديو ويحفظه، ويرسل المقطع تلقائياً على تيليگرام، ثم يرجع يراقب. بيه وضع ليل ونهار وصفحة تسجيلات لمراجعة اللي انمسك.",
@@ -259,6 +269,96 @@
     "Camera",
     "Motion detection",
     "Telegram Bot"
+   ]
+  },
+  "joosa-app": {
+   "title_ar": "جوزة — إدارة اشتراكات المولدات",
+   "title": "Joosa — Generator subscriptions",
+   "category": "mobile",
+   "featured": 2,
+   "description_ar": "الإصدار الجديد من مولدتي على Supabase: لوحة تحصيل الشهر بمخطط مباشر، المشتركين وأسعار الأمبير، وصولات الدفع، عمال الجباية، وتقارير المحصّل مقابل المتوقع. عربي، من اليمين لليسار، وثيم فاتح وداكن."
+  },
+  "esp-eggs-monitor": {
+   "title_ar": "فقّاسة البيض الذكية — ESP32",
+   "title": "Smart Egg Incubator (ESP32)",
+   "category": "hw",
+   "featured": 9,
+   "description_ar": "ESP32 مع حساس DHT22 يثبّت حرارة الفقّاسة (37.5° للدجاج) ويشغّل المروحة لوحده حتى بدون إنترنت، وتطبيق موبايل يعرض الحرارة والرطوبة ويوم الحضانة ويذكّرك بتقليب البيض، ويغيّر الإعدادات من البيت أو من أي مكان.",
+   "stack": [
+    "ESP32",
+    "Flutter",
+    "DHT22",
+    "IoT"
+   ]
+  },
+  "visitor-dashboard": {
+   "title_ar": "لوحة الزوار — تحليلات لمواقع Flask و Django",
+   "title": "visitor-dashboard",
+   "category": "web",
+   "live_url": "https://thanoon12k.github.io/visitor-dashboard/demo/",
+   "description_ar": "مكتبة بايثون منشورة على PyPI: سطرين كود وتشوف كل زيارة لموقعك (الجهاز، الدولة، المصدر، الوقت، والنقرات) بصفحة محمية بكلمة سر داخل موقعك نفسه — بدون شركات إعلانات ولا سيرفر ثاني.",
+   "stack": [
+    "Python",
+    "Flask",
+    "Django",
+    "PyPI"
+   ]
+  },
+  "quiet_vault": {
+   "title_ar": "الخزنة الهادئة — كلمات سر مشفّرة",
+   "title": "Quiet Vault",
+   "category": "mobile",
+   "description_ar": "تطبيق Flutter وإضافة كروم يتشاركون نفس الخزنة المشفّرة على Supabase: تحفظ كلمات السر والملاحظات الحساسة مشفّرة وتفتحها من الموبايل أو المتصفح.",
+   "stack": [
+    "Flutter",
+    "Chrome extension",
+    "Supabase",
+    "Encryption"
+   ]
+  },
+  "chrome-extensions": {
+   "title_ar": "مجموعة إضافات كروم",
+   "title": "Chrome extensions",
+   "category": "tools",
+   "description_ar": "مجموعة إضافات كروم كتبتها: مدرّب شطرنج يقترح أفضل نقلة على chess.com، قارئ صفحات فيسبوك العامة، عارض JSON يدعم العربي، أداة إعادة صياغة النصوص بالذكاء الاصطناعي، وإضافة الخزنة الهادئة.",
+   "stack": [
+    "JavaScript",
+    "Chrome extension"
+   ]
+  },
+  "Depts-manager": {
+   "title_ar": "دفتر الدين",
+   "title": "Debts Book",
+   "category": "mobile",
+   "description_ar": "تطبيق أندرويد للشراء بالدين من المحلات: تسجّل كل مسواك وكل تسديد لكل محل، وتشوف مجموع اللي عليك، وتسدّد المحل بضغطة. الرمز السري (6 أرقام) هو الدفتر نفسه — بدون تسجيل — ويفتح نفس الدفتر من أي موبايل، ويشتغل بدون إنترنت."
+  },
+  "dev-monitor": {
+   "title_ar": "لوحة أدوات الإدارة",
+   "title": "Admin tools hub",
+   "category": "web",
+   "description_ar": "موقع Flask على PythonAnywhere يجمع أدوات إدارة بصفحة وحدة، كل أداة مقفلة برمز خاص: مدير إعلانات الكود الذهبي والطلبات، منشورات الترند اليومية من تيليگرام، جلسات دورة الموبايل، ومدير السوشيال ميديا."
+  },
+  "Social-Platforms-Manager": {
+   "title_ar": "مدير المنصات — نشر واحد لكل المنصات",
+   "title": "Social Platforms Manager",
+   "category": "ai",
+   "description_ar": "تكتب منشور واحد (نص، صورة، فيديو أو صوت) والنظام ينشره تلقائياً على لينكدإن وفيسبوك وإنستغرام وتيك توك ويوتيوب وتيليگرام والمدونة، ويعدّل المنشور حسب كل منصة، مع جدولة وصياغة بالذكاء الاصطناعي — ويتحكم به من بوت تيليگرام أو الداشبورد.",
+   "stack": [
+    "Python",
+    "Flask",
+    "Telegram Bot",
+    "Graph API",
+    "AI"
+   ]
+  },
+  "flutter-course": {
+   "title_ar": "كورس تطبيقات الموبايل بـ Flutter",
+   "title": "Flutter mobile apps course",
+   "category": "docs",
+   "description_ar": "مادة الدورة اللي أدرّبها لطلاب الجامعات: بناء تطبيقات الموبايل بـ Flutter من الصفر لحد النشر.",
+   "stack": [
+    "Flutter",
+    "Teaching"
    ]
   }
  },
