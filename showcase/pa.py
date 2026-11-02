@@ -74,6 +74,8 @@ def deploy(cfg, user=None):
     pa = PA(user, token_for(cfg))
     site = os.path.join(cfg['_out'], 'site')
     if not os.path.isfile(os.path.join(site, 'index.html')):
+        site = os.path.join(os.path.dirname(cfg['_out']), 'site_build')   # committed build
+    if not os.path.isfile(os.path.join(site, 'index.html')):
         sys.exit('! build the site first: python -m showcase build')
     root = '/home/%s/%s' % (user, d.get('remote_dir', 'portfolio'))
     data_dir = root + '_data'          # admin uploads + edits: never deleted

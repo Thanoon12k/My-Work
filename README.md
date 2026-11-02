@@ -5,8 +5,8 @@
 <img src="docs/banner-light.png" width="100%" alt="Thanoon Younis Mohammed"></picture></a>
 
 <a href="https://make1it.pythonanywhere.com"><img src="https://img.shields.io/badge/Live_site-make1it.pythonanywhere.com-FFC93C?style=for-the-badge&labelColor=16130D" alt="Live site"></a>
-<br><img src="https://img.shields.io/badge/projects-65-12B99C?style=flat-square" alt="">
- <img src="https://img.shields.io/badge/real_screenshots-31-4361EE?style=flat-square" alt="">
+<br><img src="https://img.shields.io/badge/projects-75-12B99C?style=flat-square" alt="">
+ <img src="https://img.shields.io/badge/real_screenshots-44-4361EE?style=flat-square" alt="">
  <img src="https://img.shields.io/badge/categories-8-FF5C39?style=flat-square" alt="">
  <a href="https://wa.me/9647702790915"><img src="https://img.shields.io/badge/WhatsApp-contact-25D366?style=flat-square&logo=whatsapp&logoColor=white" alt="WhatsApp"></a>
  <a href="mailto:engthanoon1@gmail.com"><img src="https://img.shields.io/badge/Email-engthanoon1%40gmail.com-EA4335?style=flat-square&logo=gmail&logoColor=white" alt="Email"></a>
@@ -53,19 +53,19 @@
 <p align="center">
 <a href="#" title="صفحة الكود الذهبي — تدير نفسها"><img src="docs/projects/facebook-automation.webp" width="49%" alt="Golden Code — Self-running Facebook page"></a>
 <a href="https://github.com/Thanoon12k/moalidaty-front-end" title="مولدتي"><img src="docs/projects/moalidaty-front-end.webp" width="49%" alt="Moalidaty Front End"></a>
+<a href="https://github.com/Thanoon12k/joosa-app" title="جوزة — إدارة اشتراكات المولدات"><img src="docs/projects/joosa-app.webp" width="49%" alt="Joosa — Generator subscriptions"></a>
 <a href="https://github.com/Thanoon12k/moalidaty" title="مولدتي — السيرفر ولوحة الإدارة"><img src="docs/projects/moalidaty.webp" width="49%" alt="Moalidaty"></a>
 <a href="https://github.com/Thanoon12k/BubbleSheetScanner" title="ببل شيت سكنر"><img src="docs/projects/BubbleSheetScanner.webp" width="49%" alt="Bubble Sheet Scanner"></a>
 <a href="https://github.com/Thanoon12k/Employee-Manager" title="إدارة موظفين الدائرة"><img src="docs/projects/Employee-Manager.webp" width="49%" alt="Employee Manager App"></a>
-<a href="https://github.com/Thanoon12k/Pediatric-Clinic-manager" title="عيادتي — إدارة عيادة أطفال"><img src="docs/projects/Pediatric-Clinic-manager.webp" width="49%" alt="عيادتي – Pediatric Clinic Manager"></a>
 </p>
 
 
 - 🤖 **[صفحة الكود الذهبي — تدير نفسها](https://make1it.pythonanywhere.com)** <sub>Golden Code — Self-running Facebook page</sub> — `Python` · `Graph API` · `MCP` · `AI Agent`
 - 📱 **[مولدتي](https://github.com/Thanoon12k/moalidaty-front-end)** <sub>Moalidaty Front End</sub> — `Flutter`
+- 📱 **[جوزة — إدارة اشتراكات المولدات](https://github.com/Thanoon12k/joosa-app)** <sub>Joosa — Generator subscriptions</sub> — `Flutter` · `SQLite`
 - 🌐 **[مولدتي — السيرفر ولوحة الإدارة](https://github.com/Thanoon12k/moalidaty)** <sub>Moalidaty</sub> — `Django` · `DRF`
 - 🖥️ **[ببل شيت سكنر](https://github.com/Thanoon12k/BubbleSheetScanner)** <sub>Bubble Sheet Scanner</sub> — `OpenCV` · `pandas` · `Python desktop` · `Tkinter`
 - 📱 **[إدارة موظفين الدائرة](https://github.com/Thanoon12k/Employee-Manager)** <sub>Employee Manager App</sub> — `Flutter`
-- 📱 **[عيادتي — إدارة عيادة أطفال](https://github.com/Thanoon12k/Pediatric-Clinic-manager)** <sub>عيادتي – Pediatric Clinic Manager</sub> — `Flutter`
 
 
 ---
@@ -77,19 +77,25 @@
 
 
 <details open>
-<summary><h3>🌐 Web — 23</h3></summary>
+<summary><h3>🌐 Web — 27</h3></summary>
 
 
 <p align="center">
 <a href="https://github.com/Thanoon12k/moalidaty" title="مولدتي — السيرفر ولوحة الإدارة"><img src="docs/projects/moalidaty.webp" width="32%" alt="Moalidaty"></a>
 <a href="https://github.com/Thanoon12k/mosul1tourism" title="السياحة في الموصل"><img src="docs/projects/mosul1tourism.webp" width="32%" alt="حارث فراس — السياحة في الموصل"></a>
+<a href="https://github.com/Thanoon12k/Chat-App-Flutter" title="دردشة — Chat App"><img src="docs/projects/Chat-App-Flutter.webp" width="32%" alt="دردشة — Chat App"></a>
+<a href="https://github.com/Thanoon12k/visitor-dashboard" title="لوحة الزوار — تحليلات لمواقع Flask و Django"><img src="docs/projects/visitor-dashboard.webp" width="32%" alt="visitor-dashboard"></a>
+<a href="https://github.com/Thanoon12k/dev-monitor" title="لوحة أدوات الإدارة"><img src="docs/projects/dev-monitor.webp" width="32%" alt="Admin tools hub"></a>
+<a href="https://github.com/Thanoon12k/shajjar" title="شجّر — منصة التشجير المجتمعي"><img src="docs/projects/shajjar.webp" width="32%" alt="شجّر — Shajjar 🌳"></a>
 <a href="https://github.com/Thanoon12k/qaser-techani" title="قصر التقني"><img src="docs/projects/qaser-techani.webp" width="32%" alt="Qaser Techani"></a>
 <a href="https://github.com/Thanoon12k/Ideas-Store" title="فِكرة — مخزن الأفكار"><img src="docs/projects/Ideas-Store.webp" width="32%" alt="فِكْرة (Fikra) — Ideas Store"></a>
+<a href="https://github.com/Thanoon12k/projects-manager" title="مدير المشاريع"><img src="docs/projects/projects-manager.webp" width="32%" alt="Project Manager"></a>
 <a href="https://github.com/Thanoon12k/customers-manager" title="نظام إدارة الفواتير والاشتراكات"><img src="docs/projects/customers-manager.webp" width="32%" alt="نظام إدارة الفواتير"></a>
 <a href="https://github.com/Thanoon12k/Thanoon12k.github.io" title="موقعي الشخصي القديم"><img src="docs/projects/Thanoon12k.github.io.webp" width="32%" alt="Thanoon12k.github.io"></a>
 <a href="https://github.com/Thanoon12k/chatgpt-to-word-extension" title="ChatGPT إلى Word — إضافة كروم"><img src="docs/projects/chatgpt-to-word-extension.webp" width="32%" alt="Chatgpt To Word Extension"></a>
 <a href="https://github.com/Thanoon12k/React-Blog" title="React Blog"><img src="docs/projects/React-Blog.webp" width="32%" alt="React Blog"></a>
 <a href="https://github.com/Thanoon12k/text2mp3_converter" title="تحويل النص إلى MP3"><img src="docs/projects/text2mp3_converter.webp" width="32%" alt="Text To MP3 Converter 🎶"></a>
+<a href="https://github.com/Thanoon12k/Askme" title="Askme"><img src="docs/projects/Askme.webp" width="32%" alt="Askme"></a>
 <a href="https://github.com/Thanoon12k/askpdf-backend" title="Askpdf Backend"><img src="docs/projects/askpdf-backend.webp" width="32%" alt="Askpdf Backend"></a>
 <a href="https://github.com/MetaluxTech/metalux-company" title="Metalux Company"><img src="docs/projects/metalux-company.webp" width="32%" alt="Metalux Company"></a>
 <a href="https://github.com/MetaluxTech/-shortcut-url-react" title="Shortcut Url React"><img src="docs/projects/-shortcut-url-react.webp" width="32%" alt="Shortcut Url React"></a>
@@ -97,25 +103,29 @@
 <a href="https://github.com/MetaluxTech/Icream-template" title="Icream-template"><img src="docs/projects/Icream-template.webp" width="32%" alt="Icream-template"></a>
 <a href="https://github.com/MetaluxTech/Portfolio" title="Portfolio"><img src="docs/projects/Portfolio.webp" width="32%" alt="Portfolio"></a>
 <a href="https://github.com/Thanoon12k/jupyter-lstm-ga" title="Jupyter Lstm Ga"><img src="docs/projects/jupyter-lstm-ga.webp" width="32%" alt="Jupyter Lstm Ga"></a>
-<a href="https://github.com/Thanoon12k/projects-manager" title="مدير المشاريع"><img src="docs/projects/projects-manager.webp" width="32%" alt="Project Manager"></a>
 <a href="https://github.com/Thanoon12k/Chat-app-api" title="Chat-app-api"><img src="docs/projects/Chat-app-api.webp" width="32%" alt="Chat-app-api"></a>
 <a href="https://github.com/Thanoon12k/converter" title="Converter"><img src="docs/projects/converter.webp" width="32%" alt="Converter"></a>
 <a href="https://github.com/Thanoon12k/electric" title="Electric"><img src="docs/projects/electric.webp" width="32%" alt="Electric"></a>
 <a href="https://github.com/MetaluxTech/IraqiPad_Mobile" title="IraqPad Mobile App"><img src="docs/projects/IraqiPad_Mobile.webp" width="32%" alt="IraqPad Mobile App"></a>
 <a href="https://github.com/MetaluxTech/LSTM-GA-API" title="LSTM GA API"><img src="docs/projects/LSTM-GA-API.webp" width="32%" alt="LSTM GA API"></a>
-<a href="https://github.com/Thanoon12k/Askme" title="Askme"><img src="docs/projects/Askme.webp" width="32%" alt="Askme"></a>
 </p>
 
 
 - **[مولدتي — السيرفر ولوحة الإدارة](https://github.com/Thanoon12k/moalidaty)** <sub>Moalidaty</sub> — `Django` · `DRF`<br><sub dir="auto">الواجهة الخلفية لتطبيق مولدتي: حسابات المشتركين، الدفعات والتقارير، ولوحة إدارة كاملة.</sub>
 - **[السياحة في الموصل](https://github.com/Thanoon12k/mosul1tourism)** <sub>حارث فراس — السياحة في الموصل</sub> — `Flask`<br><sub dir="auto">موقع ثنائي اللغة (العربية والإنكليزية) مبني بـ Flask، ويضم:</sub>
-- **[قصر التقني](https://github.com/Thanoon12k/qaser-techani)** <sub>Qaser Techani</sub> — `Flask` · `HTML/CSS` · `react` · `tailwindcss`
+- **[دردشة — Chat App](https://github.com/Thanoon12k/Chat-App-Flutter)** — `Flutter` · `HTML/CSS`<br><sub dir="auto">A simple Arabic (RTL) chat app built with Flutter and Supabase.</sub>
+- **[لوحة الزوار — تحليلات لمواقع Flask و Django](https://github.com/Thanoon12k/visitor-dashboard)** <sub>visitor-dashboard</sub> — `Python` · `Flask` · `Django` · `PyPI`<br><sub dir="auto">مكتبة بايثون منشورة على PyPI: سطرين كود وتشوف كل زيارة لموقعك (الجهاز، الدولة، المصدر، الوقت، والنقرات) بصفحة محمية بكلمة سر داخل موقعك…</sub>
+- **[لوحة أدوات الإدارة](https://github.com/Thanoon12k/dev-monitor)** <sub>Admin tools hub</sub> — `Flask` · `REST` · `SQLite`<br><sub dir="auto">موقع Flask على PythonAnywhere يجمع أدوات إدارة بصفحة وحدة، كل أداة مقفلة برمز خاص: مدير إعلانات الكود الذهبي والطلبات، منشورات الترند…</sub>
+- **[شجّر — منصة التشجير المجتمعي](https://github.com/Thanoon12k/shajjar)** <sub>شجّر — Shajjar 🌳</sub> — `Django`<br><sub dir="auto">منصة Django لتنظيم طلبات الأشجار، متابعة الزراعة، خرائط المواقع، التقارير البيئية، وإدارة المتطوعين.</sub>
+- **[قصر التقني](https://github.com/Thanoon12k/qaser-techani)** <sub>Qaser Techani</sub> — `Flask` · `HTML/CSS` · `React` · `Tailwind`
 - **[فِكرة — مخزن الأفكار](https://github.com/Thanoon12k/Ideas-Store)** <sub>فِكْرة (Fikra) — Ideas Store</sub> — `Django` · `DRF`<br><sub dir="auto">A minimalist Django web application for capturing and organizing future ideas with voice notes, images, and rich descriptions.</sub>
+- **[مدير المشاريع](https://github.com/Thanoon12k/projects-manager)** <sub>Project Manager</sub> — `Django` · `DRF`<br><sub dir="auto">A comprehensive Django-based project management system with Google Sheets integration and WhatsApp messaging capabilities.</sub>
 - **[نظام إدارة الفواتير والاشتراكات](https://github.com/Thanoon12k/customers-manager)** <sub>نظام إدارة الفواتير</sub> — `Django`<br><sub dir="auto">نظام شامل لإدارة الفواتير والاشتراكات بالدينار العراقي باستخدام Django و Tailwind CSS.</sub>
 - **[موقعي الشخصي القديم](https://github.com/Thanoon12k/Thanoon12k.github.io)** <sub>Thanoon12k.github.io</sub> — `HTML/CSS`
 - **[ChatGPT إلى Word — إضافة كروم](https://github.com/Thanoon12k/chatgpt-to-word-extension)** <sub>Chatgpt To Word Extension</sub> — `Browser extension` · `JavaScript`
 - **[React Blog](https://github.com/Thanoon12k/React-Blog)** — `React`
 - **[تحويل النص إلى MP3](https://github.com/Thanoon12k/text2mp3_converter)** <sub>Text To MP3 Converter 🎶</sub> — `Django` · `DRF`<br><sub dir="auto">An online tool for effortlessly converting text to MP3. Designed for precision and user-friendliness, users can instantly upload their…</sub>
+- **[Askme](https://github.com/Thanoon12k/Askme)** — `Django` · `Flutter`
 - **[Askpdf Backend](https://github.com/Thanoon12k/askpdf-backend)** — `Django`
 - **[Metalux Company](https://github.com/MetaluxTech/metalux-company)** — `HTML/CSS`
 - **[Shortcut Url React](https://github.com/MetaluxTech/-shortcut-url-react)** — `React`
@@ -123,39 +133,41 @@
 - **[Icream-template](https://github.com/MetaluxTech/Icream-template)** — `HTML/CSS`
 - **[Portfolio](https://github.com/MetaluxTech/Portfolio)** — `HTML/CSS`
 - **[Jupyter Lstm Ga](https://github.com/Thanoon12k/jupyter-lstm-ga)** — `Flask` · `Jupyter` · `matplotlib` · `pandas`
-- **[مدير المشاريع](https://github.com/Thanoon12k/projects-manager)** <sub>Project Manager</sub> — `Django` · `DRF`<br><sub dir="auto">A comprehensive Django-based project management system with Google Sheets integration and WhatsApp messaging capabilities.</sub>
 - **[Chat-app-api](https://github.com/Thanoon12k/Chat-app-api)** — `Django` · `DRF` · `Selenium` · `WebSockets`
 - **[Converter](https://github.com/Thanoon12k/converter)** — `Django` · `React`
 - **[Electric](https://github.com/Thanoon12k/electric)** — `Django`
-- **[IraqPad Mobile App](https://github.com/MetaluxTech/IraqiPad_Mobile)** — `JavaScript` · `Node.js` · `react`<br><sub dir="auto">IraqPad Mobile App is a project that connects with a WordPress website, enabling users to read and post Articles/Novels. The app…</sub>
+- **[IraqPad Mobile App](https://github.com/MetaluxTech/IraqiPad_Mobile)** — `JavaScript` · `Node.js` · `React`<br><sub dir="auto">IraqPad Mobile App is a project that connects with a WordPress website, enabling users to read and post Articles/Novels. The app…</sub>
 - **[LSTM GA API](https://github.com/MetaluxTech/LSTM-GA-API)** — `Flask` · `Java` · `TensorFlow`
-- **[Askme](https://github.com/Thanoon12k/Askme)** — `Django` · `Flutter`
 
 </details>
 
 
 <details open>
-<summary><h3>📱 Mobile — 8</h3></summary>
+<summary><h3>📱 Mobile — 10</h3></summary>
 
 
 <p align="center">
 <a href="https://github.com/Thanoon12k/moalidaty-front-end" title="مولدتي"><img src="docs/projects/moalidaty-front-end.webp" width="32%" alt="Moalidaty Front End"></a>
+<a href="https://github.com/Thanoon12k/joosa-app" title="جوزة — إدارة اشتراكات المولدات"><img src="docs/projects/joosa-app.webp" width="32%" alt="Joosa — Generator subscriptions"></a>
 <a href="https://github.com/Thanoon12k/Employee-Manager" title="إدارة موظفين الدائرة"><img src="docs/projects/Employee-Manager.webp" width="32%" alt="Employee Manager App"></a>
 <a href="https://github.com/Thanoon12k/Pediatric-Clinic-manager" title="عيادتي — إدارة عيادة أطفال"><img src="docs/projects/Pediatric-Clinic-manager.webp" width="32%" alt="عيادتي – Pediatric Clinic Manager"></a>
 <a href="https://github.com/Thanoon12k/medicine-reminder" title="تذكير الدواء"><img src="docs/projects/medicine-reminder.webp" width="32%" alt="💊 What it does"></a>
-<a href="https://github.com/Thanoon12k/Chat-App-Flutter" title="Chat App Flutter"><img src="docs/projects/Chat-App-Flutter.webp" width="32%" alt="Chat App Flutter"></a>
-<a href="https://github.com/Thanoon12k/real-snack-catcher" title="حارس الليل — كاشف الحركة بالكاميرا"><img src="docs/projects/real-snack-catcher.webp" width="32%" alt="Night Guard — Real Snake Catcher"></a>
+<a href="https://github.com/Thanoon12k/quiet_vault" title="الخزنة الهادئة — كلمات سر مشفّرة"><img src="docs/projects/quiet_vault.webp" width="32%" alt="Quiet Vault"></a>
+<a href="https://github.com/Thanoon12k/Depts-manager" title="دفتر الدين"><img src="docs/projects/Depts-manager.webp" width="32%" alt="Debts Book"></a>
+<a href="https://github.com/Thanoon12k/real-snakes-catcher" title="حارس الليل — كاشف الحركة بالكاميرا"><img src="docs/projects/real-snakes-catcher.webp" width="32%" alt="Night Guard — Real Snake Catcher"></a>
 <a href="https://github.com/Thanoon12k/hand-moving-sensor" title="Hand Moving Sensor"><img src="docs/projects/hand-moving-sensor.webp" width="32%" alt="Hand Moving Sensor"></a>
 <a href="https://github.com/Thanoon12k/Speak-Loud" title="Speak Loud"><img src="docs/projects/Speak-Loud.webp" width="32%" alt="Speak Loud"></a>
 </p>
 
 
 - **[مولدتي](https://github.com/Thanoon12k/moalidaty-front-end)** <sub>Moalidaty Front End</sub> — `Flutter`<br><sub dir="auto">نظام متكامل لإدارة المولدات الأهلية: المشتركين والأمبيرات، الدفعات، الرواتب وكادر التشغيل، والأرباح والخسائر. البيانات تُخزن على سيرفر…</sub>
+- **[جوزة — إدارة اشتراكات المولدات](https://github.com/Thanoon12k/joosa-app)** <sub>Joosa — Generator subscriptions</sub> — `Flutter` · `SQLite`<br><sub dir="auto">الإصدار الجديد من مولدتي على Supabase: لوحة تحصيل الشهر بمخطط مباشر، المشتركين وأسعار الأمبير، وصولات الدفع، عمال الجباية، وتقارير…</sub>
 - **[إدارة موظفين الدائرة](https://github.com/Thanoon12k/Employee-Manager)** <sub>Employee Manager App</sub> — `Flutter`<br><sub dir="auto">نظام شؤون موظفين بصلاحيات متعددة (مدير / موظف): إرسال الاستبيانات والكتب الرسمية بصيغة PDF أو صور، الرد عليها، عرض النتائج، ولوحة مراقبة…</sub>
 - **[عيادتي — إدارة عيادة أطفال](https://github.com/Thanoon12k/Pediatric-Clinic-manager)** <sub>عيادتي – Pediatric Clinic Manager</sub> — `Flutter`<br><sub dir="auto">نظام كامل لعيادة الأطفال: صلاحيات (مدير / طبيب / مريض)، ملفات المرضى، المواعيد، الوصفات، اللقاحات ومخططات النمو، محادثة لحظية، وتقارير…</sub>
 - **[تذكير الدواء](https://github.com/Thanoon12k/medicine-reminder)** <sub>💊 What it does</sub> — `Flutter`<br><sub dir="auto">تطبيق تذكير بالدواء لكبار السن: عربي بالكامل، خط كبير، يشتغل بدون إنترنت نهائياً، وما يطلب حساب ولا أي معلومة شخصية.</sub>
-- **[Chat App Flutter](https://github.com/Thanoon12k/Chat-App-Flutter)** — `Flutter`
-- **[حارس الليل — كاشف الحركة بالكاميرا](https://github.com/Thanoon12k/real-snack-catcher)** <sub>Night Guard — Real Snake Catcher</sub> — `Flutter` · `Camera` · `Motion detection` · `Telegram Bot`<br><sub dir="auto">تطبيق أندرويد يحوّل الموبايل لكاميرا مراقبة ليلية: يحلل الصورة كل ثلث ثانية، وأول ما يحس بحركة يسجّل فيديو ويحفظه، ويرسل المقطع تلقائياً…</sub>
+- **[الخزنة الهادئة — كلمات سر مشفّرة](https://github.com/Thanoon12k/quiet_vault)** <sub>Quiet Vault</sub> — `Flutter` · `Chrome extension` · `Supabase` · `Encryption`<br><sub dir="auto">تطبيق Flutter وإضافة كروم يتشاركون نفس الخزنة المشفّرة على Supabase: تحفظ كلمات السر والملاحظات الحساسة مشفّرة وتفتحها من الموبايل أو…</sub>
+- **[دفتر الدين](https://github.com/Thanoon12k/Depts-manager)** <sub>Debts Book</sub> — `Flutter`<br><sub dir="auto">تطبيق أندرويد للشراء بالدين من المحلات: تسجّل كل مسواك وكل تسديد لكل محل، وتشوف مجموع اللي عليك، وتسدّد المحل بضغطة. الرمز السري (6…</sub>
+- **[حارس الليل — كاشف الحركة بالكاميرا](https://github.com/Thanoon12k/real-snakes-catcher)** <sub>Night Guard — Real Snake Catcher</sub> — `Flutter` · `Camera` · `Motion detection` · `Telegram Bot`<br><sub dir="auto">تطبيق أندرويد يحوّل الموبايل لكاميرا مراقبة ليلية: يحلل الصورة كل ثلث ثانية، وأول ما يحس بحركة يسجّل فيديو ويحفظه، ويرسل المقطع تلقائياً…</sub>
 - **[Hand Moving Sensor](https://github.com/Thanoon12k/hand-moving-sensor)** — `Arduino` · `Flutter`
 - **[Speak Loud](https://github.com/Thanoon12k/Speak-Loud)** — `Flutter`
 
@@ -178,22 +190,23 @@
 
 
 - **[ببل شيت سكنر](https://github.com/Thanoon12k/BubbleSheetScanner)** <sub>Bubble Sheet Scanner</sub> — `OpenCV` · `pandas` · `Python desktop` · `Tkinter`<br><sub dir="auto">يقرأ أوراق الأجوبة (Bubble Sheet) للجامعات والمدارس بدقة عالية: اسم الطالب، إجاباته، ودرجته — ويصدّرها لملف إكسل جاهز. يشتغل بالكامل…</sub>
-- **[Image Resizing](https://github.com/MetaluxTech/Image-resizing)** — `electron` · `JavaScript`
+- **[Image Resizing](https://github.com/MetaluxTech/Image-resizing)** — `Electron` · `JavaScript`
 - **[إنجاز — مدير المهام](https://github.com/Thanoon12k/Injaz)** <sub>إنجاز — Injaz</sub> — `PyQt` · `Python desktop` · `SQLite`<br><sub dir="auto">A beautiful offline Python desktop task manager with daily task tracking, checklists, priorities, tags, and a teal animated UI.</sub>
 - **[مدير مصادر الرسالة](https://github.com/Thanoon12k/thesis-sources-notes)** <sub>Thesis Resource Manager</sub> — `CustomTkinter` · `Python desktop` · `SQLite` · `Tkinter`<br><sub dir="auto">A modern desktop application to organize, categorize, and manage resources (paragraphs, references, media) for engineering theses with…</sub>
 - **[Excel Dynamic Date](https://github.com/Thanoon12k/excel_dynamic_date)** — `Excel` · `Python desktop`<br><sub dir="auto">This project provides a dynamic date feature for Excel spreadsheets. It allows users to automatically update dates based on specific…</sub>
 - **[Employees Promotion App](https://github.com/Thanoon12k/EmployeesPromotionApp)** — `.NET`
-- **[airline-management-app](https://github.com/MetaluxTech/airline-management-app)** — `electron` · `JavaScript` · `react` · `vite`<br><sub dir="auto">An Electron application with React</sub>
+- **[airline-management-app](https://github.com/MetaluxTech/airline-management-app)** — `Electron` · `JavaScript` · `React`<br><sub dir="auto">An Electron application with React</sub>
 
 </details>
 
 
 <details open>
-<summary><h3>🔌 Hardware & IoT — 6</h3></summary>
+<summary><h3>🔌 Hardware & IoT — 7</h3></summary>
 
 
 <p align="center">
 <a href="https://github.com/Thanoon12k/flutter-arduino-based-syringe-pump" title="مضخة الحقنة الطبية الذكية"><img src="docs/projects/flutter-arduino-based-syringe-pump.webp" width="32%" alt="مضخة الحقنة الطبية الذكية | Smart Medical Syringe Pump"></a>
+<a href="https://github.com/Thanoon12k/esp-eggs-monitor" title="فقّاسة البيض الذكية — ESP32"><img src="docs/projects/esp-eggs-monitor.webp" width="32%" alt="Smart Egg Incubator (ESP32)"></a>
 <a href="https://github.com/Thanoon12k/Fingerprints-Attendance-System" title="نظام الحضور بالبصمة"><img src="docs/projects/Fingerprints-Attendance-System.webp" width="32%" alt="Fingerprints Attendance System"></a>
 <a href="https://github.com/Thanoon12k/ESP_TEMP_SENSOR" title="لوحة حساس الحرارة ESP"><img src="docs/projects/ESP_TEMP_SENSOR.webp" width="32%" alt="Temperature Display Dashboard"></a>
 <a href="https://github.com/Thanoon12k/ZKTeco-ZKFinger-PRINTS-SCANNER" title="ربط قارئ بصمة ZKTeco"><img src="docs/projects/ZKTeco-ZKFinger-PRINTS-SCANNER.webp" width="32%" alt="ZKTeco Live20R — Fingerprint to PDF"></a>
@@ -203,6 +216,7 @@
 
 
 - **[مضخة الحقنة الطبية الذكية](https://github.com/Thanoon12k/flutter-arduino-based-syringe-pump)** <sub>مضخة الحقنة الطبية الذكية | Smart Medical Syringe Pump</sub> — `Arduino` · `Flutter`<br><sub dir="auto">تطبيق يتحكم بمضخة حقنة طبية عبر الأردوينو: إدارة الجرعات، تحذيرات سلامة قبل الحقن، ومراقبة لحظية مع رسم ثلاثي الأبعاد للمحقنة.</sub>
+- **[فقّاسة البيض الذكية — ESP32](https://github.com/Thanoon12k/esp-eggs-monitor)** <sub>Smart Egg Incubator (ESP32)</sub> — `ESP32` · `Flutter` · `DHT22` · `IoT`<br><sub dir="auto">ESP32 مع حساس DHT22 يثبّت حرارة الفقّاسة (37.5° للدجاج) ويشغّل المروحة لوحده حتى بدون إنترنت، وتطبيق موبايل يعرض الحرارة والرطوبة ويوم…</sub>
 - **[نظام الحضور بالبصمة](https://github.com/Thanoon12k/Fingerprints-Attendance-System)** <sub>Fingerprints Attendance System</sub> — `CustomTkinter` · `Django` · `OpenCV` · `pandas`
 - **[لوحة حساس الحرارة ESP](https://github.com/Thanoon12k/ESP_TEMP_SENSOR)** <sub>Temperature Display Dashboard</sub> — `Arduino` · `Flask` · `REST`<br><sub dir="auto">لوحة ويب تعرض قراءات حساس الحرارة المربوط بـ ESP بشكل لحظي.</sub>
 - **[ربط قارئ بصمة ZKTeco](https://github.com/Thanoon12k/ZKTeco-ZKFinger-PRINTS-SCANNER)** <sub>ZKTeco Live20R — Fingerprint to PDF</sub> — `Python desktop` · `Tkinter`<br><sub dir="auto">ربط أجهزة بصمة ZKTeco بأنظمة الحضور والانصراف — قراءة البصمات ومزامنتها مع قاعدة البيانات مباشرة.</sub>
@@ -213,28 +227,30 @@
 
 
 <details>
-<summary><h3>🤖 AI — 8</h3></summary>
+<summary><h3>🤖 AI — 9</h3></summary>
 
 
 <p align="center">
 <a href="#" title="صفحة الكود الذهبي — تدير نفسها"><img src="docs/projects/facebook-automation.webp" width="32%" alt="Golden Code — Self-running Facebook page"></a>
+<a href="https://github.com/Thanoon12k/Social-Platforms-Manager" title="مدير المنصات — نشر واحد لكل المنصات"><img src="docs/projects/Social-Platforms-Manager.webp" width="32%" alt="Social Platforms Manager"></a>
 <a href="https://github.com/Thanoon12k/green-chrome-notes" title="ملاحظات ذكية — إضافة كروم"><img src="docs/projects/green-chrome-notes.webp" width="32%" alt="🌿 AI Notes — Smart Tab Capture"></a>
 <a href="https://github.com/Thanoon12k/Arabic-Text-To-Audio-Converter" title="تحويل النص العربي إلى صوت"><img src="docs/projects/Arabic-Text-To-Audio-Converter.webp" width="32%" alt="Arabic Text‑To‑Audio Converter (Flask + Tailwind)"></a>
 <a href="https://github.com/Thanoon12k/Social-Media-Automation" title="مدير صفحات السوشيال ميديا"><img src="docs/projects/Social-Media-Automation.webp" width="32%" alt="Social Media Automation"></a>
-<a href="https://github.com/Thanoon12k/Youtube-Translator" title="مترجم يوتيوب اللحظي"><img src="docs/projects/Youtube-Translator.webp" width="32%" alt="Python YouTube Real-Time Translator"></a>
-<a href="https://github.com/MetaluxTech/Cloud-Simulation-AI" title="AI Cloud Simulation Platform"><img src="docs/projects/Cloud-Simulation-AI.webp" width="32%" alt="AI Cloud Simulation Platform"></a>
 <a href="https://github.com/Thanoon12k/background_remover" title="إزالة خلفية الصور"><img src="docs/projects/background_remover.webp" width="32%" alt="Image Background Remover Website 🖼️"></a>
+<a href="https://github.com/MetaluxTech/Cloud-Simulation-AI" title="AI Cloud Simulation Platform"><img src="docs/projects/Cloud-Simulation-AI.webp" width="32%" alt="AI Cloud Simulation Platform"></a>
+<a href="https://github.com/Thanoon12k/Youtube-Translator" title="مترجم يوتيوب اللحظي"><img src="docs/projects/Youtube-Translator.webp" width="32%" alt="Python YouTube Real-Time Translator"></a>
 <a href="https://github.com/Thanoon12k/AI-Arabic-handwriting-OCR" title="التعرف على خط اليد العربي"><img src="docs/projects/AI-Arabic-handwriting-OCR.webp" width="32%" alt="Arabic Handwriting OCR"></a>
 </p>
 
 
 - **[صفحة الكود الذهبي — تدير نفسها](https://make1it.pythonanywhere.com)** <sub>Golden Code — Self-running Facebook page</sub> — `Python` · `Graph API` · `MCP` · `AI Agent`<br><sub dir="auto">صفحة فيسبوك مؤتمتة بالكامل: تصميم كروت المنشورات يتولّد تلقائياً بالكود، النشر والجدولة عبر Graph API من خلال وكيل ذكاء اصطناعي، ومتابعة…</sub>
+- **[مدير المنصات — نشر واحد لكل المنصات](https://github.com/Thanoon12k/Social-Platforms-Manager)** <sub>Social Platforms Manager</sub> — `Python` · `Flask` · `Telegram Bot` · `Graph API`<br><sub dir="auto">تكتب منشور واحد (نص، صورة، فيديو أو صوت) والنظام ينشره تلقائياً على لينكدإن وفيسبوك وإنستغرام وتيك توك ويوتيوب وتيليگرام والمدونة،…</sub>
 - **[ملاحظات ذكية — إضافة كروم](https://github.com/Thanoon12k/green-chrome-notes)** <sub>🌿 AI Notes — Smart Tab Capture</sub> — `Browser extension`<br><sub dir="auto">&gt; A premium Chrome extension powered by Groq AI to capture, organize, and tag notes from any browser tab.</sub>
 - **[تحويل النص العربي إلى صوت](https://github.com/Thanoon12k/Arabic-Text-To-Audio-Converter)** <sub>Arabic Text‑To‑Audio Converter (Flask + Tailwind)</sub> — `Excel` · `Flask` · `video`<br><sub dir="auto">Arabic Text‑To‑Audio Converter is a modern, login‑free web app that converts Arabic (and English) text into high‑quality MP3 audio. It’s…</sub>
 - **[مدير صفحات السوشيال ميديا](https://github.com/Thanoon12k/Social-Media-Automation)** <sub>Social Media Automation</sub> — `Django`<br><sub dir="auto">ينشر ويجدول المنشورات على صفحات التواصل من داخل السيرفر، ويدعم الربط بوكيل ذكاء اصطناعي يدير المحتوى والردود.</sub>
-- **[مترجم يوتيوب اللحظي](https://github.com/Thanoon12k/Youtube-Translator)** <sub>Python YouTube Real-Time Translator</sub> — `Django` · `video`<br><sub dir="auto">A revolutionary Chrome extension and web tool designed to transform your YouTube experience with real-time voice translations. Built…</sub>
-- **[AI Cloud Simulation Platform](https://github.com/MetaluxTech/Cloud-Simulation-AI)** — `Java` · `Jupyter` · `matplotlib` · `pandas`<br><sub dir="auto">This project is an AI Simulation Platform that comprises three main components: ga-lstm, AIcode, and simulationcode. Each component…</sub>
 - **[إزالة خلفية الصور](https://github.com/Thanoon12k/background_remover)** <sub>Image Background Remover Website 🖼️</sub> — `Django` · `DRF` · `REST`<br><sub dir="auto">An online tool for effortlessly removing image backgrounds. Designed for precision and user-friendliness, users can instantly upload and…</sub>
+- **[AI Cloud Simulation Platform](https://github.com/MetaluxTech/Cloud-Simulation-AI)** — `Java` · `Jupyter` · `matplotlib` · `pandas`<br><sub dir="auto">This project is an AI Simulation Platform that comprises three main components: ga-lstm, AIcode, and simulationcode. Each component…</sub>
+- **[مترجم يوتيوب اللحظي](https://github.com/Thanoon12k/Youtube-Translator)** <sub>Python YouTube Real-Time Translator</sub> — `Django` · `video`<br><sub dir="auto">A revolutionary Chrome extension and web tool designed to transform your YouTube experience with real-time voice translations. Built…</sub>
 - **[التعرف على خط اليد العربي](https://github.com/Thanoon12k/AI-Arabic-handwriting-OCR)** <sub>Arabic Handwriting OCR</sub> — `Notes`<br><sub dir="auto">This project focuses on Optical Character Recognition (OCR) for Arabic handwriting, aiming to convert handwritten Arabic text into…</sub>
 
 </details>
@@ -259,10 +275,11 @@
 
 
 <details>
-<summary><h3>🧰 Tools — 8</h3></summary>
+<summary><h3>🧰 Tools — 9</h3></summary>
 
 
 <p align="center">
+<a href="https://github.com/Thanoon12k/chrome-extensions" title="مجموعة إضافات كروم"><img src="docs/projects/chrome-extensions.webp" width="32%" alt="Chrome extensions"></a>
 <a href="https://github.com/Thanoon12k/ROUTER-AQM-FIFO-CODEL-PIE-comparison" title="Network Queue Management Simulation"><img src="docs/projects/ROUTER-AQM-FIFO-CODEL-PIE-comparison.webp" width="32%" alt="Network Queue Management Simulation"></a>
 <a href="https://github.com/Thanoon12k/Video-Audio-Studio" title="Video-Audio Studio"><img src="docs/projects/Video-Audio-Studio.webp" width="32%" alt="Video-Audio Studio"></a>
 <a href="https://github.com/Thanoon12k/pdf-words-counter" title="Pdf Words Counter"><img src="docs/projects/pdf-words-counter.webp" width="32%" alt="Pdf Words Counter"></a>
@@ -274,6 +291,7 @@
 </p>
 
 
+- **[مجموعة إضافات كروم](https://github.com/Thanoon12k/chrome-extensions)** <sub>Chrome extensions</sub> — `JavaScript` · `Chrome extension`<br><sub dir="auto">مجموعة إضافات كروم كتبتها: مدرّب شطرنج يقترح أفضل نقلة على chess.com، قارئ صفحات فيسبوك العامة، عارض JSON يدعم العربي، أداة إعادة صياغة…</sub>
 - **[Network Queue Management Simulation](https://github.com/Thanoon12k/ROUTER-AQM-FIFO-CODEL-PIE-comparison)** — `matplotlib` · `Python`<br><sub dir="auto">This project implements a network queue management simulation comparing two algorithms:</sub>
 - **[Video-Audio Studio](https://github.com/Thanoon12k/Video-Audio-Studio)** — `audio` · `Python` · `video`<br><sub dir="auto">Video-Audio Studio is a versatile toolkit for processing video and audio files. It allows users to perform a variety of operations such…</sub>
 - **[Pdf Words Counter](https://github.com/Thanoon12k/pdf-words-counter)** — `Python`
@@ -287,15 +305,17 @@
 
 
 <details>
-<summary><h3>📚 Research & Notes — 2</h3></summary>
+<summary><h3>📚 Research & Notes — 3</h3></summary>
 
 
 <p align="center">
+<a href="https://github.com/Thanoon12k/flutter-course" title="كورس تطبيقات الموبايل بـ Flutter"><img src="docs/projects/flutter-course.webp" width="32%" alt="Flutter mobile apps course"></a>
 <a href="https://github.com/Thanoon12k/AI-agents-basics" title="AI Agents Basics"><img src="docs/projects/AI-agents-basics.webp" width="32%" alt="AI Agents Basics"></a>
 <a href="https://github.com/Thanoon12k/NextJs-Share-Prompts" title="Prompet Share"><img src="docs/projects/NextJs-Share-Prompts.webp" width="32%" alt="Prompet Share"></a>
 </p>
 
 
+- **[كورس تطبيقات الموبايل بـ Flutter](https://github.com/Thanoon12k/flutter-course)** <sub>Flutter mobile apps course</sub> — `Flutter` · `Teaching`<br><sub dir="auto">مادة الدورة اللي أدرّبها لطلاب الجامعات: بناء تطبيقات الموبايل بـ Flutter من الصفر لحد النشر.</sub>
 - **[AI Agents Basics](https://github.com/Thanoon12k/AI-agents-basics)** — `Notes`
 - **[Prompet Share](https://github.com/Thanoon12k/NextJs-Share-Prompts)** — `Notes`<br><sub dir="auto">Prompet Share is a Next.js application designed to facilitate secure and efficient sharing of prompts among users. It leverages modern…</sub>
 
@@ -318,6 +338,7 @@
 - **Live screenshot** (لقطة حقيقية)
 - **Rendered templates** (من قوالب المشروع)
 - **Repo images** (صور المشروع)
+- **Html replica with demo data** (نسخة HTML ببيانات تجريبية)
 - **Mock-up from source** (تصور من الكود)
 - **Cover art** (غلاف)
 

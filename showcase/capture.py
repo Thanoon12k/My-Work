@@ -14,7 +14,8 @@ ERROR_MARKERS = [
     'Directory listing for /', 'AttributeError at', 'Bad Request (400)',
 ]
 SKIP_LINK = re.compile(r'logout|signout|sign-out|delete|remove|/static/|/media/|\.(pdf|zip|png|'
-                       r'jpe?g|gif|svg|webp|avif|ico|css|js|xlsx?|docx?|mp3|mp4)$|^mailto:|^tel:|/admin/.+',
+                       r'jpe?g|gif|svg|webp|avif|ico|css|js|xlsx?|docx?|mp3|mp4)$|^mailto:|^tel:|'
+                       r'/admin/.*(/add/|/delete/|/history/|password|jsi18n|/r/|logout)|/admin/[^/]+/$',
                        re.I)
 
 
@@ -466,12 +467,16 @@ def same_origin_links(pg, base):
         h = h.split('#')[0]
         if h.startswith(base) and not SKIP_LINK.search(h) and h not in out:
             out.append(h)
-    return out
+    # Django admin: the model lists (full of demo rows) beat everything else there
+    return sorted(out, key=lambda h: not re.search(r'/admin/[^/]+/[^/]+/$', h))
 
 
-def crawl(browser, url, outdir, prefix, max_pages=5, mobile=True, clip_height=900):
-    """Screenshot the start page and a few linked pages. Returns shot records."""
+def crawl(browser, url, outdir, prefix, max_pages=5, mobile=True, clip_height=900,
+          fallbacks=()):
+    """Screenshot the start page and a few linked pages. Returns shot records.
+    fallbacks: pages to try when nothing worked (e.g. /admin/ for API-only Django apps)."""
     shots, seen_hashes = [], set()
+    fallbacks = list(fallbacks)
     base = re.match(r'https?://[^/]+/', url).group(0)
     pg = browser.page(1440, clip_height)
     queue, done, logged_in = [url], set(), False
@@ -487,7 +492,11 @@ def crawl(browser, url, outdir, prefix, max_pages=5, mobile=True, clip_height=90
         shots.append({'file': name, 'kind': 'live', 'device': device, 'caption': caption})
 
     try:
-        while queue and len(shots) < max_pages:
+        while (queue or (fallbacks and not shots)) and len(shots) < max_pages:
+            if not queue:
+                url = fallbacks.pop(0)
+                queue.append(url)
+                log('  trying ' + url[len(base) - 1:])
             u = queue.pop(0)
             if u in done:
                 continue
@@ -507,6 +516,8 @@ def crawl(browser, url, outdir, prefix, max_pages=5, mobile=True, clip_height=90
             if not logged_in and pg.query_selector('input[type=password]'):
                 if try_login(pg):
                     logged_in = True
+                    if shots:
+                        shots[-1]['login'] = True        # show it after the inside pages
                     log('  logged in with demo account')
                     queue.insert(0, pg.url)
                     done.discard(pg.url)
@@ -526,7 +537,7 @@ def crawl(browser, url, outdir, prefix, max_pages=5, mobile=True, clip_height=90
                 m.context.close()
     finally:
         pg.context.close()
-    return shots
+    return sorted(shots, key=lambda x: bool(x.pop('login', False)))
 
 
 def _img_diff(a, b):
@@ -665,7 +676,9 @@ def flutter_shots(browser, url, outdir, max_shots=8, start_taps=()):
                 continue
     finally:
         pg.context.close()
-    return shots
+    # the app's real content first; splash and login screens go to the back
+    return sorted(shots, key=lambda x: x['caption'] in ('Splash', 'Login'))
+
 
 def capture_live(browser, project, repo_dir, outdir, envroot, max_pages=5):
     kind = project['primary']
@@ -717,7 +730,8 @@ def capture_live(browser, project, repo_dir, outdir, envroot, max_pages=5):
         if kind == 'flutter':
             return flutter_shots(browser, url, outdir,
                                  start_taps=project.get('flutter_taps', ()))
-        return crawl(browser, url, outdir, 'live', max_pages=max_pages)
+        fb = [url + 'admin/', url + 'api/'] if kind == 'django' else []
+        return crawl(browser, url, outdir, 'live', max_pages=max_pages, fallbacks=fb)
     finally:
         server.stop()
 

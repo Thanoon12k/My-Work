@@ -99,6 +99,10 @@ def shoot_one(cfg, browser, slug, path, url, over):
                                       os.path.join(cfg['_out'], 'envs'),
                                       max_pages=cfg.get('max_pages', 5))
         print('    live: %d' % len(shots))
+    live_url = over.get('live_url') or ''
+    if not shots and live_url.startswith('http') and 'facebook.com' not in live_url:
+        shots += capture.crawl(browser, live_url, outdir, 'site', max_pages=3)
+        print('    live site %s: %d' % (live_url, len(shots)))
     if not shots and p['primary'] in ('django', 'flask', 'fastapi'):
         shots += capture.render_templates(p, path, outdir, browser)
         print('    templates: %d' % len(shots))
