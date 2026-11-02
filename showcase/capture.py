@@ -12,6 +12,7 @@ ERROR_MARKERS = [
     'ImproperlyConfigured', 'The requested URL was not found', 'DisallowedHost',
     'ImportError', 'Module not found', 'Unhandled Runtime Error', 'jinja2.exceptions',
     'Directory listing for /', 'AttributeError at', 'Bad Request (400)',
+    'The install worked successfully',
 ]
 SKIP_LINK = re.compile(r'logout|signout|sign-out|delete|remove|/static/|/media/|\.(pdf|zip|png|'
                        r'jpe?g|gif|svg|webp|avif|ico|css|js|xlsx?|docx?|mp3|mp4)$|^mailto:|^tel:|'
@@ -323,7 +324,7 @@ def flutter_prepare(d, fl, env):
                 open(main, 'w', encoding='utf-8').write(src2)
 
 
-def start_flutter(root, where, envdir):
+def start_flutter(root, where, envdir, defines=None):
     """Build the Flutter app for the web and serve the result: real UI, not a mockup."""
     fl = flutter_bin()
     if not fl:
@@ -332,6 +333,11 @@ def start_flutter(root, where, envdir):
     d = os.path.join(root, where)
     web = os.path.join(d, 'build', 'web')
     stamp = os.path.join(web, 'main.dart.js')
+    want = ' '.join('--dart-define=%s=%s' % kv for kv in sorted((defines or {}).items()))
+    mark = os.path.join(d, 'build', '.showcase-defines')
+    have = open(mark).read() if os.path.exists(mark) else ''
+    if os.path.exists(stamp) and have != want:
+        shutil.rmtree(web, ignore_errors=True)          # built with other flags
     if not os.path.exists(stamp):
         env = {'CI': 'true', 'FLUTTER_SUPPRESS_ANALYTICS': 'true'}
         if not os.path.isdir(os.path.join(d, 'web')):
@@ -343,7 +349,8 @@ def start_flutter(root, where, envdir):
             run([fl, 'pub', 'upgrade', '--major-versions'], d, 600, env)
         log('flutter build web (about a minute)')
         code, out = run([fl, 'build', 'web', '--release', '--no-web-resources-cdn',
-                         '--no-wasm-dry-run'], d, 900, env)
+                         '--no-wasm-dry-run'] + want.split(), d, 900, env)
+        open(mark, 'w').write(want)
         if code != 0 or not os.path.exists(stamp):
             err = [l for l in out.splitlines() if 'Error' in l or 'error' in l][:3]
             log('flutter web build failed: ' + ' | '.join(err)[:300])
@@ -688,7 +695,10 @@ def capture_live(browser, project, repo_dir, outdir, envroot, max_pages=5):
     where = project['where'][kind]
     envdir = os.path.join(envroot, project['slug'])
     try:
-        started = starter(repo_dir, where, envdir)
+        if kind == 'flutter':     # e.g. {"APP_DEMO": "true"} to switch on an app's demo mode
+            started = starter(repo_dir, where, envdir, project.get('flutter_defines'))
+        else:
+            started = starter(repo_dir, where, envdir)
     except Exception as e:
         log('could not start: %s' % e)
         return []

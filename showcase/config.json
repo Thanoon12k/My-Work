@@ -21,6 +21,7 @@
  ],
  "repos": [
   "Thanoon12k/facebook-automation",
+  "Thanoon12k/iraq-places",
   "Thanoon12k/flutter-course",
   "Thanoon12k/joosa-app",
   "Thanoon12k/Social-Platforms-Manager",
@@ -115,7 +116,8 @@
   "moalidaty": {
    "title_ar": "مولدتي — السيرفر ولوحة الإدارة",
    "featured": 2,
-   "description_ar": "الواجهة الخلفية لتطبيق مولدتي: حسابات المشتركين، الدفعات والتقارير، ولوحة إدارة كاملة."
+   "description_ar": "الواجهة الخلفية لتطبيق مولدتي: حسابات المشتركين، الدفعات والتقارير، ولوحة إدارة كاملة.",
+   "hide": true
   },
   "BubbleSheetScanner": {
    "title_ar": "ببل شيت سكنر",
@@ -271,7 +273,8 @@
     "Camera",
     "Motion detection",
     "Telegram Bot"
-   ]
+   ],
+   "first_image": "live03.png"
   },
   "joosa-app": {
    "title_ar": "جوزة — إدارة اشتراكات المولدات",
@@ -291,7 +294,8 @@
     "Flutter",
     "DHT22",
     "IoT"
-   ]
+   ],
+   "no_run": true
   },
   "visitor-dashboard": {
    "title_ar": "لوحة الزوار — تحليلات لمواقع Flask و Django",
@@ -316,7 +320,11 @@
     "Chrome extension",
     "Supabase",
     "Encryption"
-   ]
+   ],
+   "primary": "flutter",
+   "flutter_defines": {
+    "QUIET_VAULT_DEMO": "true"
+   }
   },
   "chrome-extensions": {
    "title_ar": "مجموعة إضافات كروم",
@@ -332,7 +340,8 @@
    "title_ar": "دفتر الدين",
    "title": "Debts Book",
    "category": "mobile",
-   "description_ar": "تطبيق أندرويد للشراء بالدين من المحلات: تسجّل كل مسواك وكل تسديد لكل محل، وتشوف مجموع اللي عليك، وتسدّد المحل بضغطة. الرمز السري (6 أرقام) هو الدفتر نفسه — بدون تسجيل — ويفتح نفس الدفتر من أي موبايل، ويشتغل بدون إنترنت."
+   "description_ar": "تطبيق أندرويد للشراء بالدين من المحلات: تسجّل كل مسواك وكل تسديد لكل محل، وتشوف مجموع اللي عليك، وتسدّد المحل بضغطة. الرمز السري (6 أرقام) هو الدفتر نفسه — بدون تسجيل — ويفتح نفس الدفتر من أي موبايل، ويشتغل بدون إنترنت.",
+   "first_image": "demo-01-home.png"
   },
   "dev-monitor": {
    "title_ar": "لوحة أدوات الإدارة",
@@ -361,6 +370,22 @@
    "stack": [
     "Flutter",
     "Teaching"
+   ]
+  },
+  "iraq-places": {
+   "title_ar": "أماكن العراق — منصة سياحة وجولات",
+   "title": "Iraq Places",
+   "category": "web",
+   "featured": 3,
+   "private": true,
+   "no_run": true,
+   "live_url": "https://iraqplaces.com/",
+   "description_ar": "موقع سياحي حي لزيارة العراق: جولات خاصة وجماعية لبابل وأور والأهوار وسامراء والموصل وأربيل مع مرشدين محليين، حجز فنادق ونقل من المطار، مساعدة بالفيزا، مدونة وتقييمات، ولوحة إدارة للمحتوى والزيارات.",
+   "stack": [
+    "Python",
+    "Flask",
+    "SEO",
+    "Analytics"
    ]
   }
  },

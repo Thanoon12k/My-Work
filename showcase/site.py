@@ -64,11 +64,12 @@ def build(cfg):
         if o.get('hide') or not p.get('shots'):
             continue
         p.update({k: v for k, v in o.items() if not k.startswith('_')})
-        shots = sorted(p['shots'], key=lambda s: KIND_RANK.get(s['kind'], 9))
-        real = [s for s in shots if s['kind'] != 'cover']
-        cover = [s for s in shots if s['kind'] == 'cover']
-        # the generated cover is only the headline image when nothing better exists
-        shots = real + cover if not real else real + cover[:1]
+        from .cli import order_shots
+        shots = order_shots(os.path.join(out, 'shots', p['slug']), p['shots'],
+                            o.get('first_image'))
+        # order_shots already put the cover where it belongs (ahead of near-blank pages)
+        covers = [s for s in shots if s['kind'] == 'cover']
+        shots = [s for s in shots if s['kind'] != 'cover' or s is covers[0]]
         imgs = []
         d = os.path.join(site, 'img', p['slug'])
         os.makedirs(d, exist_ok=True)

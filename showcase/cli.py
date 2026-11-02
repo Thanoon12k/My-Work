@@ -82,6 +82,42 @@ def last_commit(path):
         return ''
 
 
+DULL_TITLES = re.compile(r'^(site administration|log ?in|sign ?in|إدارة الموقع|تسجيل الدخول|'
+                         r'django administration|login|splash|mobile)', re.I)
+
+
+def coverage(path):
+    """Share of the picture that has something on it (0 = blank page, 1 = full)."""
+    from PIL import Image, ImageStat
+    im = Image.open(path).convert('L').resize((320, 200))
+    cells = [(x, y) for y in range(0, 200, 20) for x in range(0, 320, 20)]
+    return sum(ImageStat.Stat(im.crop((x, y, x + 20, y + 20))).stddev[0] > 10
+               for x, y in cells) / len(cells)
+
+
+def order_shots(outdir, shots, first=None):
+    """Best picture first. A full real screen wins; a real but nearly empty one (blank form,
+    admin index, login page) falls behind demo replicas and project images, and an almost
+    blank one even behind the generated cover. Nothing is thrown away."""
+    rank = {'live': 0, 'upload': 0, 'repo': 1, 'template': 2, 'demo': 1, 'mockup': 4, 'cover': 5}
+
+    def key(s):
+        if first and s['file'] == first:
+            return (-1, 0)
+        r, cov = rank.get(s['kind'], 3), 0.5
+        if s['kind'] in ('live', 'template'):
+            try:
+                cov = coverage(os.path.join(outdir, s['file']))
+            except Exception:
+                pass
+            if cov < 0.08 or (s['kind'] == 'template' and cov < 0.25):
+                r = 6
+            elif cov < 0.2 or DULL_TITLES.match(s.get('caption') or ''):
+                r = 3
+        return (r, -round(cov, 1))
+    return sorted(shots, key=key)
+
+
 def shoot_one(cfg, browser, slug, path, url, over):
     t0 = time.time()
     p = detect.detect(path, slug)
@@ -145,6 +181,7 @@ def shoot_one(cfg, browser, slug, path, url, over):
                           'device': 'desktop', 'caption': cap})
         except Exception as e:
             print('    mockup %s failed: %s' % (name, e))
+    shots = order_shots(outdir, shots, over.get('first_image'))
     p['shots'] = shots
     p['seconds'] = round(time.time() - t0, 1)
     print('    -> %d image(s) in %.0fs' % (len(shots), p['seconds']))
