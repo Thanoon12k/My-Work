@@ -40,10 +40,10 @@ class PA:
                     time.sleep(int(m.group(1)) + 1 if m else 2 ** min(attempt + 1, 5))
                     continue
                 return e.code, body
-            except urllib.error.URLError as e:
-                if attempt >= 3:
-                    return 0, str(e.reason)
-                time.sleep(3)
+            except (urllib.error.URLError, OSError) as e:      # dropped connections: retry
+                if attempt >= 8:
+                    return 0, str(getattr(e, 'reason', e))
+                time.sleep(2 + attempt * 2)
 
     def upload(self, remote, blob):
         b = uuid.uuid4().hex
