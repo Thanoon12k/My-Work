@@ -5,8 +5,8 @@ CATS = [('web', 'ويب'), ('mobile', 'موبايل'), ('desktop', 'ديسكتو
         ('ai', 'ذكاء اصطناعي'), ('sim', 'شبكات ومحاكاة'), ('tools', 'أدوات'),
         ('docs', 'أبحاث وملاحظات')]
 KIND_LABEL = {'live': 'لقطة حقيقية', 'upload': 'لقطة حقيقية', 'template': 'من قوالب المشروع', 'repo': 'صور المشروع',
-              'mockup': 'تصور من الكود', 'cover': 'غلاف'}
-KIND_RANK = {'live': 0, 'repo': 1, 'template': 2, 'mockup': 3, 'cover': 4}
+              'demo': 'نسخة HTML ببيانات تجريبية', 'mockup': 'تصور من الكود', 'cover': 'غلاف'}
+KIND_RANK = {'live': 0, 'repo': 1, 'template': 2, 'demo': 3, 'mockup': 4, 'cover': 5}
 
 FAVICON_SVG = '''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
 <rect x="7" y="3" width="54" height="54" rx="14" fill="#16130D"/>
@@ -211,7 +211,7 @@ h1 mark{background:var(--gold);color:#16130D;padding:0 12px;border-radius:14px;b
 .kind{position:absolute;top:12px;right:12px;font-size:12px;font-weight:800;border:2px solid #16130D;border-radius:100px;
  padding:1px 11px;background:#fff;color:#16130D}
 .kind.live{background:var(--teal);color:#fff}.kind.repo{background:var(--gold)}
-.kind.mockup,.kind.cover{background:#fff}
+.kind.mockup,.kind.demo,.kind.cover{background:#fff}
 .count{position:absolute;bottom:10px;left:12px;font-size:12px;font-weight:800;background:#16130Dcc;color:#fff;
  border-radius:10px;padding:1px 9px}
 .body{padding:16px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
@@ -406,7 +406,7 @@ $('#q').oninput=e=>{q=e.target.value;draw()};
 let cur=null, idx=0;
 function show(i){idx=(i+cur.imgs.length)%cur.imgs.length;$('#big').src=cur.imgs[idx].src;
  document.querySelectorAll('#strip img').forEach((im,j)=>im.classList.toggle('on',j===idx));
- $('#note').textContent=KIND[cur.imgs[idx].kind]+(cur.imgs[idx].kind==='mockup'?' — تصور تقريبي مبني من نصوص وأيقونات الكود نفسه':cur.imgs[idx].kind==='template'?' — قوالب المشروع الأصلية بدون بيانات':cur.imgs[idx].kind==='cover'?' — صورة معبّرة عن المشروع':'');}
+ $('#note').textContent=KIND[cur.imgs[idx].kind]+(cur.imgs[idx].kind==='mockup'?' — تصور تقريبي مبني من نصوص وأيقونات الكود نفسه':cur.imgs[idx].kind==='template'?' — قوالب المشروع الأصلية بدون بيانات':cur.imgs[idx].kind==='demo'?' — شاشات التطبيق معاد بناؤها بـ HTML من كوده نفسه، والبيانات تجريبية':cur.imgs[idx].kind==='cover'?' — صورة معبّرة عن المشروع':'');}
 function open_(slug){cur=P.find(p=>p.slug===slug);if(!cur)return;
  $('#strip').innerHTML=cur.imgs.map((im,j)=>`<img src="${im.src}" data-i="${j}" alt="">`).join('');
  $('#strip').style.display=cur.imgs.length>1?'flex':'none';

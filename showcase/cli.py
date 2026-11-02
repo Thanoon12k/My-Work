@@ -7,7 +7,7 @@
   python -m showcase all              # all of the above
   python -m showcase readme --dest D  # GitHub README + images into folder D
 """
-import argparse, json, os, shutil, subprocess, sys, time, urllib.request
+import argparse, json, os, re, shutil, subprocess, sys, time, urllib.request
 
 from . import assets, capture, detect, mockup
 
@@ -112,6 +112,18 @@ def shoot_one(cfg, browser, slug, path, url, over):
             im.save(os.path.join(outdir, name))
             repo_imgs.append({'file': name, 'kind': 'repo', 'caption': os.path.basename(rel),
                               'device': 'desktop'})
+    demo_dir = os.path.join(HERE, 'demos', slug)        # hand-made HTML replicas, demo data
+    if os.path.isdir(demo_dir):
+        for fn in sorted(f for f in os.listdir(demo_dir) if f.endswith('.html')):
+            out = 'demo-%s.png' % fn[:-5]
+            html = open(os.path.join(demo_dir, fn), encoding='utf-8').read()
+            m = re.search(r'<title>(.*?)</title>', html)
+            try:
+                browser.html_shot(html, os.path.join(outdir, out), w=412, h=892, scale=2)
+                shots.append({'file': out, 'kind': 'demo', 'device': 'mobile',
+                              'caption': m.group(1) if m else fn[:-5]})
+            except Exception as e:
+                print('    demo %s failed: %s' % (fn, e))
     if not repo_imgs:
         repo_imgs = assets.collect(p, path, outdir,
                                    remote=cfg.get('download_readme_images', True))
@@ -119,7 +131,7 @@ def shoot_one(cfg, browser, slug, path, url, over):
         print('    repo images: %d' % len(repo_imgs))
     shots += repo_imgs
     for name, html, cap in mockup.make(p, path):
-        real = [s for s in shots if s['kind'] in ('live', 'template')]
+        real = [s for s in shots if s['kind'] in ('live', 'template', 'demo')]
         if name != 'cover' and (len(real) >= 2 or real and p['primary'] != 'flutter'):
             continue                  # real UI beats an approximation
         f = name + '.png'
