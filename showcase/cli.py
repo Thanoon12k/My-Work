@@ -7,7 +7,7 @@
   python -m showcase all              # all of the above
   python -m showcase readme --dest D  # GitHub README + images into folder D
 """
-import argparse, json, os, shutil, subprocess, sys, time, urllib.request
+import argparse, json, os, re, shutil, subprocess, sys, time, urllib.request
 
 from . import assets, capture, detect, mockup
 
@@ -82,6 +82,42 @@ def last_commit(path):
         return ''
 
 
+DULL_TITLES = re.compile(r'^(site administration|log ?in|sign ?in|إدارة الموقع|تسجيل الدخول|'
+                         r'django administration|login|splash|mobile)', re.I)
+
+
+def coverage(path):
+    """Share of the picture that has something on it (0 = blank page, 1 = full)."""
+    from PIL import Image, ImageStat
+    im = Image.open(path).convert('L').resize((320, 200))
+    cells = [(x, y) for y in range(0, 200, 20) for x in range(0, 320, 20)]
+    return sum(ImageStat.Stat(im.crop((x, y, x + 20, y + 20))).stddev[0] > 10
+               for x, y in cells) / len(cells)
+
+
+def order_shots(outdir, shots, first=None):
+    """Best picture first. A full real screen wins; a real but nearly empty one (blank form,
+    admin index, login page) falls behind demo replicas and project images, and an almost
+    blank one even behind the generated cover. Nothing is thrown away."""
+    rank = {'live': 0, 'upload': 0, 'repo': 1, 'template': 2, 'demo': 1, 'mockup': 4, 'cover': 5}
+
+    def key(s):
+        if first and s['file'] == first:
+            return (-1, 0)
+        r, cov = rank.get(s['kind'], 3), 0.5
+        if s['kind'] in ('live', 'template'):
+            try:
+                cov = coverage(os.path.join(outdir, s['file']))
+            except Exception:
+                pass
+            if cov < 0.08 or (s['kind'] == 'template' and cov < 0.25):
+                r = 6
+            elif cov < 0.2 or DULL_TITLES.match(s.get('caption') or ''):
+                r = 3
+        return (r, -round(cov, 1))
+    return sorted(shots, key=key)
+
+
 def shoot_one(cfg, browser, slug, path, url, over):
     t0 = time.time()
     p = detect.detect(path, slug)
@@ -99,6 +135,10 @@ def shoot_one(cfg, browser, slug, path, url, over):
                                       os.path.join(cfg['_out'], 'envs'),
                                       max_pages=cfg.get('max_pages', 5))
         print('    live: %d' % len(shots))
+    live_url = over.get('live_url') or ''
+    if not shots and live_url.startswith('http') and 'facebook.com' not in live_url:
+        shots += capture.crawl(browser, live_url, outdir, 'site', max_pages=3)
+        print('    live site %s: %d' % (live_url, len(shots)))
     if not shots and p['primary'] in ('django', 'flask', 'fastapi'):
         shots += capture.render_templates(p, path, outdir, browser)
         print('    templates: %d' % len(shots))
@@ -112,6 +152,18 @@ def shoot_one(cfg, browser, slug, path, url, over):
             im.save(os.path.join(outdir, name))
             repo_imgs.append({'file': name, 'kind': 'repo', 'caption': os.path.basename(rel),
                               'device': 'desktop'})
+    demo_dir = os.path.join(HERE, 'demos', slug)        # hand-made HTML replicas, demo data
+    if os.path.isdir(demo_dir):
+        for fn in sorted(f for f in os.listdir(demo_dir) if f.endswith('.html')):
+            out = 'demo-%s.png' % fn[:-5]
+            html = open(os.path.join(demo_dir, fn), encoding='utf-8').read()
+            m = re.search(r'<title>(.*?)</title>', html)
+            try:
+                browser.html_shot(html, os.path.join(outdir, out), w=412, h=892, scale=2)
+                shots.append({'file': out, 'kind': 'demo', 'device': 'mobile',
+                              'caption': m.group(1) if m else fn[:-5]})
+            except Exception as e:
+                print('    demo %s failed: %s' % (fn, e))
     if not repo_imgs:
         repo_imgs = assets.collect(p, path, outdir,
                                    remote=cfg.get('download_readme_images', True))
@@ -119,7 +171,8 @@ def shoot_one(cfg, browser, slug, path, url, over):
         print('    repo images: %d' % len(repo_imgs))
     shots += repo_imgs
     for name, html, cap in mockup.make(p, path):
-        if name != 'cover' and any(s['kind'] in ('live', 'template') for s in shots):
+        real = [s for s in shots if s['kind'] in ('live', 'template', 'demo')]
+        if name != 'cover' and (len(real) >= 2 or real and p['primary'] != 'flutter'):
             continue                  # real UI beats an approximation
         f = name + '.png'
         try:
@@ -128,6 +181,7 @@ def shoot_one(cfg, browser, slug, path, url, over):
                           'device': 'desktop', 'caption': cap})
         except Exception as e:
             print('    mockup %s failed: %s' % (name, e))
+    shots = order_shots(outdir, shots, over.get('first_image'))
     p['shots'] = shots
     p['seconds'] = round(time.time() - t0, 1)
     print('    -> %d image(s) in %.0fs' % (len(shots), p['seconds']))

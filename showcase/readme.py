@@ -10,7 +10,8 @@ CAT_EN = {'web': ('🌐', 'Web'), 'mobile': ('📱', 'Mobile'), 'desktop': ('�
           'hw': ('🔌', 'Hardware & IoT'), 'ai': ('🤖', 'AI'), 'sim': ('🛰️', 'Networks & Simulation'),
           'tools': ('🧰', 'Tools'), 'docs': ('📚', 'Research & Notes')}
 KIND_EN = {'live': 'live screenshot', 'upload': 'live screenshot', 'template': 'rendered templates',
-           'repo': 'repo images', 'mockup': 'mock-up from source', 'cover': 'cover art'}
+           'repo': 'repo images', 'demo': 'HTML replica with demo data',
+           'mockup': 'mock-up from source', 'cover': 'cover art'}
 E = html.escape
 
 BANNER = '''<div class="b"><div class="dots"></div>
@@ -226,7 +227,7 @@ def readme(data, s, live_url, me=None):
       '\n<a href="%s"><img src="docs/site-mobile.webp" width="24%%" alt="Mobile"></a>\n</p>\n'
       % (live_url, live_url))
     w('\n**Picture labels** — every image on the site says what it is:\n')
-    for k in ('live', 'template', 'repo', 'mockup', 'cover'):
+    for k in ('live', 'template', 'repo', 'demo', 'mockup', 'cover'):
         w('- **%s** (%s)' % (KIND_EN[k].capitalize(), KIND_LABEL[k]))
     w(TOOL_SECTION)
     return '\n'.join(out) + '\n'

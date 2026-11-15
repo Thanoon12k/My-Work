@@ -12,9 +12,11 @@ ERROR_MARKERS = [
     'ImproperlyConfigured', 'The requested URL was not found', 'DisallowedHost',
     'ImportError', 'Module not found', 'Unhandled Runtime Error', 'jinja2.exceptions',
     'Directory listing for /', 'AttributeError at', 'Bad Request (400)',
+    'The install worked successfully',
 ]
 SKIP_LINK = re.compile(r'logout|signout|sign-out|delete|remove|/static/|/media/|\.(pdf|zip|png|'
-                       r'jpe?g|gif|svg|webp|avif|ico|css|js|xlsx?|docx?|mp3|mp4)$|^mailto:|^tel:|/admin/.+',
+                       r'jpe?g|gif|svg|webp|avif|ico|css|js|xlsx?|docx?|mp3|mp4)$|^mailto:|^tel:|'
+                       r'/admin/.*(/add/|/delete/|/history/|password|jsi18n|/r/|logout)|/admin/[^/]+/$',
                        re.I)
 
 
@@ -120,22 +122,41 @@ def python_env(proj_dir, envdir, extra=()):
             break
     stamp = os.path.join(envdir, '.installed')
     if not os.path.exists(stamp):
-        for r in reqs:
-            code, out = run([py, '-m', 'pip', 'install', '-q', '--disable-pip-version-check',
-                             '-r', r], proj_dir, 900)
+        pipq = [py, '-m', 'pip', 'install', '-q', '--disable-pip-version-check']
+        for i, r in enumerate(reqs):
+            raw = open(r, 'rb').read()
+            if raw[:2] in (b'\xff\xfe', b'\xfe\xff') or b'\x00' in raw:   # PowerShell UTF-16
+                fixed = os.path.join(envdir, 'requirements-%d.txt' % i)
+                open(fixed, 'w', encoding='utf-8').write(
+                    raw.decode('utf-16', 'replace').replace('\x00', ''))
+                reqs[i] = r = fixed
+            # wheels only: old pins otherwise compile numpy & co. from source for minutes
+            code, out = run(pipq + ['--only-binary=:all:', '-r', r], proj_dir, 600)
             if code != 0:           # one bad pin should not sink the rest
-                log('requirements had errors, installing line by line')
-                for line in open(r, encoding='utf-8', errors='replace'):
-                    line = line.split('#')[0].strip()
-                    if line and not line.startswith('-'):
-                        run([py, '-m', 'pip', 'install', '-q', '--disable-pip-version-check',
-                             line], proj_dir, 300)
+                log('requirements had errors, installing line by line (unpinned if needed)')
+                for line in open(r, encoding='utf-8-sig', errors='replace'):
+                    line = line.split('#')[0].split(';')[0].strip()
+                    if not line or line.startswith('-'):
+                        continue
+                    c, _ = run(pipq + ['--only-binary=:all:', line], proj_dir, 300)
+                    name = re.split(r'[<>=!~\[ ]', line)[0]
+                    if c != 0 and name and name != line:
+                        run(pipq + ['--only-binary=:all:', name], proj_dir, 300)
         if extra:
             run([py, '-m', 'pip', 'install', '-q', '--disable-pip-version-check', *extra],
                 proj_dir, 600)
         open(stamp, 'w').close()
     return py
 
+
+PIP_NAMES = {'cv2': 'opencv-python-headless', 'PIL': 'pillow', 'sklearn': 'scikit-learn',
+             'yaml': 'pyyaml', 'dotenv': 'python-dotenv', 'bs4': 'beautifulsoup4',
+             'rest_framework': 'djangorestframework', 'corsheaders': 'django-cors-headers',
+             'decouple': 'python-decouple', 'environ': 'django-environ', 'jwt': 'pyjwt',
+             'crispy_forms': 'django-crispy-forms', 'docx': 'python-docx', 'fitz': 'pymupdf',
+             'telegram': 'python-telegram-bot', 'google': 'google-generativeai',
+             'rest_framework_simplejwt': 'djangorestframework-simplejwt',
+             'channels': 'channels', 'daphne': 'daphne', 'whitenoise': 'whitenoise'}
 
 APP_ENV = {
     'SECRET_KEY': 'showcase-dev-key', 'DJANGO_SECRET_KEY': 'showcase-dev-key',
@@ -154,8 +175,16 @@ def start_django(root, where, envdir):
     run([py, 'manage.py', 'makemigrations', '--noinput'], d, 180, env)
     run([py, 'manage.py', 'migrate', '--noinput', '--run-syncdb'], d, 300, env)
     run([py, 'manage.py', 'createsuperuser', '--noinput'], d, 120, env)
-    s = Server([py, 'manage.py', 'runserver', '127.0.0.1:%d' % port, '--noreload',
-                '--insecure'], d, env)
+    seed = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'demo_seed.py')
+    code, out = run([py, 'manage.py', 'shell', '-c', open(seed, encoding='utf-8').read()],
+                    d, 180, env)
+    n = out.count('seeded ')
+    if n:
+        log('demo data in %d tables' % n)
+    _, helptext = run([py, 'manage.py', 'runserver', '--help'], d, 60, env)
+    extra = ['--insecure'] if '--insecure' in helptext else []   # only with staticfiles
+    s = Server([py, 'manage.py', 'runserver', '127.0.0.1:%d' % port, '--noreload'] + extra,
+               d, env)
     return s, 'http://127.0.0.1:%d/' % port, 90
 
 
@@ -253,11 +282,88 @@ def start_extension(root, where, envdir):
     return s, url + page.lstrip('/'), t
 
 
+def flutter_bin():
+    for c in (os.environ.get('FLUTTER'), shutil.which('flutter'), '/opt/flutter/bin/flutter',
+              os.path.expanduser('~/flutter/bin/flutter')):
+        if c and os.path.exists(c):
+            return c
+    return None
+
+
+def flutter_prepare(d, fl, env):
+    """Small, local-only tweaks so a phone app can run in a browser for screenshots."""
+    pub = os.path.join(d, 'pubspec.yaml')
+    spec = open(pub, encoding='utf-8', errors='replace').read()
+    # assets listed in pubspec but not committed (.env and friends): use the example or empty
+    for a in re.findall(r'^\s*-\s*["\']?([^"\'\s#]+)', spec.split('assets:', 1)[-1], re.M):
+        f = os.path.join(d, a)
+        if a.endswith('/') or os.path.exists(f) or not re.search(r'(^|/)\.?[\w.-]+$', a):
+            continue
+        for ex in (f + '.example', f + '.sample', os.path.join(d, '.env.example')):
+            if os.path.isfile(ex):
+                shutil.copy(ex, f)
+                break
+        else:
+            os.makedirs(os.path.dirname(f) or d, exist_ok=True)
+            open(f, 'w').close()
+    # sqflite has no web backend: switch it to the wasm build of SQLite
+    main = os.path.join(d, 'lib', 'main.dart')
+    if re.search(r'^\s+sqflite:', spec, re.M) and 'sqflite_common_ffi_web' not in spec \
+            and os.path.isfile(main):
+        code, _ = run([fl, 'pub', 'add', 'sqflite_common_ffi_web'], d, 600, env)
+        if code == 0:
+            run([fl, 'pub', 'run', 'sqflite_common_ffi_web:setup'], d, 600, env)
+            src = open(main, encoding='utf-8').read()
+            src2 = re.sub(r'(\bmain\s*\([^)]*\)\s*(?:async\s*)?\{)',
+                          r'\1\n  sc_sql.databaseFactory = sc_web.databaseFactoryFfiWeb;',
+                          src, count=1)
+            if src2 != src:
+                src2 = ("import 'package:sqflite/sqflite.dart' as sc_sql;\n"
+                        "import 'package:sqflite_common_ffi_web/sqflite_ffi_web.dart' as sc_web;\n"
+                        + src2)
+                open(main, 'w', encoding='utf-8').write(src2)
+
+
+def start_flutter(root, where, envdir, defines=None):
+    """Build the Flutter app for the web and serve the result: real UI, not a mockup."""
+    fl = flutter_bin()
+    if not fl:
+        log('flutter SDK not found (set FLUTTER=/path/to/flutter) - using mockups')
+        return None
+    d = os.path.join(root, where)
+    web = os.path.join(d, 'build', 'web')
+    stamp = os.path.join(web, 'main.dart.js')
+    want = ' '.join('--dart-define=%s=%s' % kv for kv in sorted((defines or {}).items()))
+    mark = os.path.join(d, 'build', '.showcase-defines')
+    have = open(mark).read() if os.path.exists(mark) else ''
+    if os.path.exists(stamp) and have != want:
+        shutil.rmtree(web, ignore_errors=True)          # built with other flags
+    if not os.path.exists(stamp):
+        env = {'CI': 'true', 'FLUTTER_SUPPRESS_ANALYTICS': 'true'}
+        if not os.path.isdir(os.path.join(d, 'web')):
+            run([fl, 'create', '--platforms=web', '.'], d, 300, env)
+        code, out = run([fl, 'pub', 'get'], d, 600, env)
+        flutter_prepare(d, fl, env)
+        if code != 0:
+            log('pub get failed, trying pub upgrade --major-versions')
+            run([fl, 'pub', 'upgrade', '--major-versions'], d, 600, env)
+        log('flutter build web (about a minute)')
+        code, out = run([fl, 'build', 'web', '--release', '--no-web-resources-cdn',
+                         '--no-wasm-dry-run'] + want.split(), d, 900, env)
+        open(mark, 'w').write(want)
+        if code != 0 or not os.path.exists(stamp):
+            err = [l for l in out.splitlines() if 'Error' in l or 'error' in l][:3]
+            log('flutter web build failed: ' + ' | '.join(err)[:300])
+            return None
+    s, url, t = static_server(web)
+    return s, url, t
+
+
 STARTERS = {
     'django': start_django, 'flask': start_flask, 'fastapi': start_fastapi,
     'streamlit': start_streamlit, 'gradio': start_gradio, 'static': start_static,
     'extension': start_extension, 'vite': start_npm('vite'), 'cra': start_npm('cra'),
-    'next': start_npm('next'), 'node': start_npm('node'),
+    'next': start_npm('next'), 'node': start_npm('node'), 'flutter': start_flutter,
 }
 
 
@@ -368,12 +474,16 @@ def same_origin_links(pg, base):
         h = h.split('#')[0]
         if h.startswith(base) and not SKIP_LINK.search(h) and h not in out:
             out.append(h)
-    return out
+    # Django admin: the model lists (full of demo rows) beat everything else there
+    return sorted(out, key=lambda h: not re.search(r'/admin/[^/]+/[^/]+/$', h))
 
 
-def crawl(browser, url, outdir, prefix, max_pages=5, mobile=True, clip_height=900):
-    """Screenshot the start page and a few linked pages. Returns shot records."""
+def crawl(browser, url, outdir, prefix, max_pages=5, mobile=True, clip_height=900,
+          fallbacks=()):
+    """Screenshot the start page and a few linked pages. Returns shot records.
+    fallbacks: pages to try when nothing worked (e.g. /admin/ for API-only Django apps)."""
     shots, seen_hashes = [], set()
+    fallbacks = list(fallbacks)
     base = re.match(r'https?://[^/]+/', url).group(0)
     pg = browser.page(1440, clip_height)
     queue, done, logged_in = [url], set(), False
@@ -389,7 +499,11 @@ def crawl(browser, url, outdir, prefix, max_pages=5, mobile=True, clip_height=90
         shots.append({'file': name, 'kind': 'live', 'device': device, 'caption': caption})
 
     try:
-        while queue and len(shots) < max_pages:
+        while (queue or (fallbacks and not shots)) and len(shots) < max_pages:
+            if not queue:
+                url = fallbacks.pop(0)
+                queue.append(url)
+                log('  trying ' + url[len(base) - 1:])
             u = queue.pop(0)
             if u in done:
                 continue
@@ -409,6 +523,8 @@ def crawl(browser, url, outdir, prefix, max_pages=5, mobile=True, clip_height=90
             if not logged_in and pg.query_selector('input[type=password]'):
                 if try_login(pg):
                     logged_in = True
+                    if shots:
+                        shots[-1]['login'] = True        # show it after the inside pages
                     log('  logged in with demo account')
                     queue.insert(0, pg.url)
                     done.discard(pg.url)
@@ -428,7 +544,147 @@ def crawl(browser, url, outdir, prefix, max_pages=5, mobile=True, clip_height=90
                 m.context.close()
     finally:
         pg.context.close()
-    return shots
+    return sorted(shots, key=lambda x: bool(x.pop('login', False)))
+
+
+def _img_diff(a, b):
+    """0..1 share of pixels that differ noticeably between two PNG byte strings."""
+    import io
+    from PIL import Image, ImageChops
+    ia = Image.open(io.BytesIO(a)).convert('L').resize((103, 223))
+    ib = Image.open(io.BytesIO(b)).convert('L').resize((103, 223))
+    d = ImageChops.difference(ia, ib).point(lambda v: 255 if v > 24 else 0)
+    return sum(1 for v in d.getdata() if v) / (103 * 223)
+
+
+def _blank(data):
+    import io
+    from PIL import Image, ImageStat
+    im = Image.open(io.BytesIO(data)).convert('L')
+    return max(ImageStat.Stat(im).stddev) < 6
+
+
+FLUTTER_ERRORS = re.compile(r'Bad state|Exception|Error:|MissingPluginException|'
+                            r'Unsupported operation|LateInitializationError|تعذّ?ر تشغيل', re.I)
+
+TAPPABLES_JS = """() => {
+  const seen = new Set();
+  return [...document.querySelectorAll('flt-semantics')]
+    .map((e, i) => [e, i])
+    .filter(([e]) => ['button','tab','link','menuitem'].includes(e.getAttribute('role'))
+                     || e.hasAttribute('flt-tappable'))
+    .map(([e, i]) => { const r = e.getBoundingClientRect();
+         return {i, w: r.width, h: r.height, y: r.y, tab: e.getAttribute('role') === 'tab'
+                 || r.y > innerHeight - 90,
+                 label: (e.getAttribute('aria-label') || e.innerText || '').trim()}; })
+    .filter(o => o.w > 8 && o.h > 8 && o.y < innerHeight
+                 && !/(log ?out|sign ?out|خروج|حذف|delete|remove|رجوع|back)/i.test(o.label))
+    .filter(o => { const k = o.label + ':' + Math.round(o.y / 20);
+                   if (seen.has(k)) return false; seen.add(k); return true; });
+}"""
+CLICK_JS = "i => document.querySelectorAll('flt-semantics')[i].click()"
+
+
+def flutter_shots(browser, url, outdir, max_shots=8, start_taps=()):
+    """Open a Flutter web build at phone size, wait past the splash, tap around.
+    Buttons such as "try the demo" (or the labels in start_taps) are pressed first, so
+    apps that ship their own demo data are shown with it."""
+    pg = browser.page(412, 892, 2)   # no mobile emulation: Flutter then lays out at 412px
+    shots, kept = [], []
+    demo_re = re.compile(r'(تجريب|جرّ?ب|demo|try (the )?app|guest|ضيف)', re.I)
+
+    def keep(data, caption):
+        if _blank(data) or any(_img_diff(data, k) < 0.03 for k in kept):
+            return False
+        name = 'live%02d.png' % (len(shots) + 1)
+        open(os.path.join(outdir, name), 'wb').write(data)
+        kept.append(data)
+        shots.append({'file': name, 'kind': 'live', 'device': 'mobile', 'caption': caption})
+        return True
+
+    def semantics():
+        pg.evaluate("document.querySelector('flt-semantics-placeholder')?.click()")
+        pg.wait_for_timeout(800)
+
+    def tap_label(rx):
+        for t in pg.evaluate(TAPPABLES_JS):
+            if re.search(rx, t['label'] or '', re.I):
+                pg.evaluate(CLICK_JS, t['i'])
+                pg.wait_for_timeout(4000)
+                return t['label']
+        return None
+
+    def load(first_time=False):
+        pg.goto(url, wait_until='load', timeout=60000)
+        first = None
+        for i in range(8):                      # let splash screens / animations finish
+            pg.wait_for_timeout(2500)
+            if i == 1:
+                first = pg.screenshot()
+        semantics()
+        entry = pg.screenshot()
+        pressed = []
+        for rx in list(start_taps) or [demo_re.pattern]:
+            try:
+                lab = tap_label(rx)
+            except Exception:
+                lab = None
+            if lab:
+                pressed.append(lab)
+                semantics()
+        if pressed and first_time:
+            log('  pressed: ' + ' > '.join(x[:30] for x in pressed))
+        return first, entry, pg.screenshot(), bool(pressed)
+
+    def screen_text():
+        return pg.evaluate("[...document.querySelectorAll('flt-semantics')]"
+                           ".map(e => e.getAttribute('aria-label') || e.innerText || '')"
+                           ".join(' ')")
+
+    try:
+        first, entry, home, pressed = load(True)
+        try:
+            text = screen_text()
+        except Exception:
+            text = ''
+        bad = FLUTTER_ERRORS.search(text or '')
+        if bad:
+            log('  app shows an error screen (%s) - not using it' % bad.group(0))
+            return []
+        if first and _img_diff(first, entry) > 0.15:
+            keep(first, 'Splash')
+        if pressed:
+            keep(entry, 'Login')
+        if not keep(home, 'Home') and not kept:
+            return []
+        try:
+            taps = pg.evaluate(TAPPABLES_JS)
+            taps = (sorted(taps, key=lambda t: not t['tab']))[:16]   # bottom tabs first
+        except Exception:
+            taps = []
+        for t in taps:
+            if len(shots) >= max_shots:
+                break
+            try:
+                pg.evaluate(CLICK_JS, t['i'])
+                pg.wait_for_timeout(2500)
+                data = pg.screenshot()
+                if _img_diff(data, home) > 0.08 and not FLUTTER_ERRORS.search(screen_text()):
+                    keep(data, t['label'][:40] or 'Screen')
+                pg.go_back()
+                pg.wait_for_timeout(1500)
+                if _img_diff(pg.screenshot(), home) > 0.08:
+                    pg.keyboard.press('Escape')
+                    pg.wait_for_timeout(800)
+                if _img_diff(pg.screenshot(), home) > 0.08:
+                    load()
+                semantics()
+            except Exception:
+                continue
+    finally:
+        pg.context.close()
+    # the app's real content first; splash and login screens go to the back
+    return sorted(shots, key=lambda x: x['caption'] in ('Splash', 'Login'))
 
 
 def capture_live(browser, project, repo_dir, outdir, envroot, max_pages=5):
@@ -439,7 +695,10 @@ def capture_live(browser, project, repo_dir, outdir, envroot, max_pages=5):
     where = project['where'][kind]
     envdir = os.path.join(envroot, project['slug'])
     try:
-        started = starter(repo_dir, where, envdir)
+        if kind == 'flutter':     # e.g. {"APP_DEMO": "true"} to switch on an app's demo mode
+            started = starter(repo_dir, where, envdir, project.get('flutter_defines'))
+        else:
+            started = starter(repo_dir, where, envdir)
     except Exception as e:
         log('could not start: %s' % e)
         return []
@@ -448,7 +707,20 @@ def capture_live(browser, project, repo_dir, outdir, envroot, max_pages=5):
     server, url, timeout = started
     try:
         log('starting %s at %s' % (kind, url))
-        if not server.wait_http(url, timeout):
+        for attempt in range(4):
+            if server.wait_http(url, timeout):
+                break
+            missing = re.findall(r"No module named '([\w.]+)'", server.tail(4000))
+            if attempt < 3 and missing and kind in ('django', 'flask', 'fastapi', 'streamlit',
+                                                     'gradio'):
+                mod = missing[-1].split('.')[0]
+                pkg = PIP_NAMES.get(mod, mod)
+                log('installing missing module %s and retrying' % pkg)
+                server.stop()
+                run([venv_python(envdir), '-m', 'pip', 'install', '-q', '--only-binary=:all:',
+                     pkg], repo_dir, 300)
+                server, url, timeout = starter(repo_dir, where, envdir)
+                continue
             log('did not come up. log tail:\n      ' +
                 server.tail(600).replace('\n', '\n      '))
             return []
@@ -465,7 +737,11 @@ def capture_live(browser, project, repo_dir, outdir, envroot, max_pages=5):
                          'caption': 'Extension popup'}]
             finally:
                 pg.context.close()
-        return crawl(browser, url, outdir, 'live', max_pages=max_pages)
+        if kind == 'flutter':
+            return flutter_shots(browser, url, outdir,
+                                 start_taps=project.get('flutter_taps', ()))
+        fb = [url + 'admin/', url + 'api/'] if kind == 'django' else []
+        return crawl(browser, url, outdir, 'live', max_pages=max_pages, fallbacks=fb)
     finally:
         server.stop()
 

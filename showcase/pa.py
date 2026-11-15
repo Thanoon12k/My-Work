@@ -40,10 +40,10 @@ class PA:
                     time.sleep(int(m.group(1)) + 1 if m else 2 ** min(attempt + 1, 5))
                     continue
                 return e.code, body
-            except urllib.error.URLError as e:
-                if attempt >= 3:
-                    return 0, str(e.reason)
-                time.sleep(3)
+            except (urllib.error.URLError, OSError) as e:      # dropped connections: retry
+                if attempt >= 8:
+                    return 0, str(getattr(e, 'reason', e))
+                time.sleep(2 + attempt * 2)
 
     def upload(self, remote, blob):
         b = uuid.uuid4().hex
@@ -73,6 +73,8 @@ def deploy(cfg, user=None):
         sys.exit('! no PythonAnywhere user (config deploy.user or --user)')
     pa = PA(user, token_for(cfg))
     site = os.path.join(cfg['_out'], 'site')
+    if not os.path.isfile(os.path.join(site, 'index.html')):
+        site = os.path.join(os.path.dirname(cfg['_out']), 'site_build')   # committed build
     if not os.path.isfile(os.path.join(site, 'index.html')):
         sys.exit('! build the site first: python -m showcase build')
     root = '/home/%s/%s' % (user, d.get('remote_dir', 'portfolio'))
